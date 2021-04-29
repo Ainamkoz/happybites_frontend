@@ -1,9 +1,9 @@
 import { Typography } from "@material-ui/core";
 
-const Company = ({ value }) => {
+const Notfound = ({ value }) => {
     return (
       <Typography variant="h5">Not Found</Typography>
     );
   };
   
-  export default Company
+  export default Notfound

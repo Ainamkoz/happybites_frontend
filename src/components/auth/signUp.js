@@ -62,7 +62,9 @@ export default function Signup() {
 
   });
   const {firstname, lastname, email, customertype, password } = formState;
-  const onChange = e => setFormState({...formState, [e.target.name]: e.target.value});
+  const onChange = e =>{
+     setFormState({...formState, [e.target.name]: e.target.value})
+    };
   const onSubmit = e => {
       e.preventDefault();
       console.log('Submitting...')
@@ -89,6 +91,7 @@ export default function Signup() {
                 fullWidth
                 id="firstName"
                 label="First Name"
+                onChange={onChange}
                 autoFocus
               />
             </Grid>
@@ -101,6 +104,7 @@ export default function Signup() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -112,6 +116,7 @@ export default function Signup() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -124,13 +129,14 @@ export default function Signup() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
               <FormLabel>What kind of user would you like to be?</FormLabel>
-              <RadioGroup aria-label="customertype" name="customertype" onChange={}>
-                <FormControlLabel  control={<Radio />} label="I am a company and I would like to offer my services" />
-                <FormControlLabel  control={<Radio />} label="I just want to book events and look for inspiration" />
+              <RadioGroup aria-label="customertype" name="customertype" value={formState.customertype} onChange={onChange}>
+                <FormControlLabel  control={<Radio />} value="company" label="I am a company and I would like to offer my services" />
+                <FormControlLabel  control={<Radio />} value="user" label="I just want to book events and look for inspiration" />
             </RadioGroup>
             </Grid>
             <Grid item xs={12}>

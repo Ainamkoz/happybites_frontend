@@ -13,7 +13,7 @@ import {useState} from 'react';
 
 const SideDrawer = ({ navLinks }) => {
     const classes = useStyles();
-    const [state, setState] = useState({ right: false });
+    const [state, setState] = useState({ left: false });
   
     const toggleDrawer = (anchor, open) => event => {
       if (
@@ -49,18 +49,18 @@ const SideDrawer = ({ navLinks }) => {
         <IconButton
           edge="start"
           aria-label="menu"
-          onClick={toggleDrawer("right", true)}
+          onClick={toggleDrawer("left", true)}
         >
           <Menu fontSize="large" style={{ color: `white` }} />
         </IconButton>
   
         <Drawer
-          anchor="right"
-          open={state.right}
-          onOpen={toggleDrawer("right", true)}
-          onClose={toggleDrawer("right", false)}
+          anchor="left"
+          open={state.left}
+          onOpen={toggleDrawer("left", true)}
+          onClose={toggleDrawer("left", false)}
         >
-          {sideDrawerList("right")}
+          {sideDrawerList("left")}
         </Drawer>
       </>
     );

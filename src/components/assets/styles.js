@@ -5,22 +5,29 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.paper,
         padding: theme.spacing(8,0,6)
     },
-    icon:{
-        marginRight:'20px',
-    },
-    buttons:{
-        marginTop:'40px',
-    },
-    cardGrid: {
-        padding:'20px 0',
-    },
+    palette: {
+            primary1Color: `#006064`,
+            accent1Color: `#e57373`,
+            accent3Color: `#bdbdbd`,
+            accent2Color: `#e57373`,
+            shadowColor: `#ffcdd2`,
+            primary2Color: `#ff8a80`,
+            primary3Color: `#bdbdbd`,
+            secondaryTextColor: `#e57373`,
+            pickerHeaderColor: `#e57373`,
+            clockCircleColor: `#e0e0e0`
+        },
+    appBar: {
+            color: `#006064`
+        },
     navbarDisplayFlex: {
         display: `flex`,
+        flexDirection:`row`,
         justifyContent: `space-between`
       },
       navDisplayFlex: {
         display: `flex`,
-        justifyContent: `space-between`
+        justifyContent: `space-around`
       },
       linkText: {
         textDecoration: `none`,
@@ -30,17 +37,6 @@ const useStyles = makeStyles((theme) => ({
       list: {
         width: 250
       },
-    card:{
-        height:'100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia:{
-        paddingTop: '56.25%', //16:9
-    },
-    cardContent: {
-        flexGrow:1,
-    },
     footer: {
         backgroundColor: theme.palette.background.paper,
         padding: '50px 0',

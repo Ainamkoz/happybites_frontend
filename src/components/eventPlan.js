@@ -1,6 +1,12 @@
+import { Container } from '@material-ui/core';
+import Rescard from './cards/rescard';
+
 const Eventplan  = ()=>{
     return(
-        <h1>here is where the users try to find a good restaurant with searcher and cards</h1>
+        <Container>
+            <h1>here is where the users try to find a good restaurant with searcher and cards</h1>
+        <Rescard/>
+        </Container>
     )
 }
 
