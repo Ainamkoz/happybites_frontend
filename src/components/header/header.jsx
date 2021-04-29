@@ -2,6 +2,7 @@ import {
     AppBar,
     Toolbar,
     Container,
+    Grid,
     List,
     ListItem,
     ListItemText,
@@ -10,26 +11,30 @@ import {
   import {Link} from 'react-router-dom';
   import useStyles from "../assets/styles";
   import SideDrawer from "./drawer";
+  import AccountCircleIcon from '@material-ui/icons/AccountCircle';
   import Logo from '../assets/hb-logo-white.svg';
   
   const navLinks = [
-    { title: `home`, path: `/` },
-    { title: `about us`, path: `/About` },
-    { title: `collaborators`, path: `/collaborator` },
-    { title: `Plan your event`, path: `/plan-your-event` },
-    { title: `Recipes`, path: `/recipes-inspiration` },
-    { title: `contact`, path: `/contact` }
+    { title: `About`, path: `/about` },
+    { title: `Collaborators`, path: `/collaborators` },
+    { title: `Plan event`, path: `/plan-your-event` },
+    { title: `Inspiration`, path: `/inspiration` },
+    { title: `Sign Up`, path: `/sign-up` },
+    { title: `Sign In`, path: `/sign-in` }
   ];
   
   const Header = () => {
     const classes = useStyles();
   
     return (
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
-          <Container maxWidth="md" className={classes.navbarDisplayFlex}>
+          <Container direction="row" justify="space-around" alignItems="flex-start" className={classes.navbarDisplayFlex}>
+          <Hidden mdUp>
+              <SideDrawer navLinks={navLinks} />
+            </Hidden>
             <Link to='/'>
-            <img src={Logo} alt="Happy Bites Logo"/>
+            <img src={Logo} alt="Happy Bites Logo" className="imglogo"/>
             </Link>
             <Hidden smDown>
               <List
@@ -44,9 +49,7 @@ import {
                 ))}
               </List>
             </Hidden>
-            <Hidden mdUp>
-              <SideDrawer navLinks={navLinks} />
-            </Hidden>
+                  <AccountCircleIcon style={{color: 'white'}} className="profile"/>
           </Container>
         </Toolbar>
       </AppBar>
