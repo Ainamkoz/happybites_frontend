@@ -13,16 +13,17 @@ const MapComponent = ({ result }) => {
   return (
     <>
     <div>
-      <MapContainer center={[52.517949885246125, 13.40569756502596]} zoom={10} scrollWheelZoom={true}>
+    <MapContainer center={[52.517949885246125, 13.40569756502596]} zoom={10} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {result.map((result) => (
+        {result && 
+          result.map((markerlocation, result) => (
           <div key={result.id}>
-            <Marker position={[result.lat, result.long]} icon={icon}>
+            <Marker position={[markerlocation.lat, markerlocation.long]} icon={icon}>
               <Popup>
-               {/* <Link to={`/company/${result.id}`}>{result.restaurantname}, {result.adress}</Link>*/}
+               <Link to={`/company/${markerlocation.id}`}>{markerlocation.restaurantname}, {markerlocation.adress}</Link>
               </Popup>
             </Marker>
           </div>

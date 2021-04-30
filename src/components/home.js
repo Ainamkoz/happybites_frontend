@@ -24,7 +24,7 @@ const Home  = ()=>{
             </Router>       
                 </Grid>
                 <Grid xs="12" xl="6">
-                    <img src={Homeimg} />
+                    <img src={Homeimg} alt="home-img-cheers"/>
                 </Grid>
              
             </Grid>
@@ -35,7 +35,7 @@ const Home  = ()=>{
         </div>
         <Container>
            <Typography variant="h3" align="center" gutterBottom> You can find our Happy Biters all around the world, Take a look at the partners available for your events.</Typography> You can find our Happy Biters all around the world, Take a look at the partners available for your events.
-            {/*<div><MapComponent/></div> */}
+            <div><MapComponent/></div> 
         </Container>
      </>   
     )

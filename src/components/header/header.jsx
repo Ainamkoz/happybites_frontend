@@ -9,7 +9,7 @@ import {
     Hidden
   } from "@material-ui/core";
   import {useContext} from 'react';
-import {AuthContext} from './context/authContext';
+import {AuthContext} from '../auth/context/authContext';
   import {Link} from 'react-router-dom';
   import useStyles from "../assets/styles";
   import SideDrawer from "./drawer";

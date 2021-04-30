@@ -26,3 +26,8 @@ div.banner-home{
     color: white;
 
 }
+
+.leaflet-container {
+    width: auto;
+    height: 20rem;
+  }
