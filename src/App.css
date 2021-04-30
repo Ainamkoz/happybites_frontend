@@ -13,9 +13,9 @@ img.imglogo{
 div.home{
     height: 100vh;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-
+}
+div.MuiButtonGroup-root.MuiButtonGroup-disableElevation.MuiButtonGroup-contained{
+    float:left;
 }
 div.banner-home{
     margin-top: 2rem;
@@ -24,7 +24,6 @@ div.banner-home{
     width: 100%;
     background-color: #e57373;
     color: white;
-
 }
 
 .leaflet-container {

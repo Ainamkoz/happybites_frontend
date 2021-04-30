@@ -8,7 +8,7 @@ import Rating from '@material-ui/lab/Rating'
 
 
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((Theme) => ({
   root: {
     display: 'flex',
   },
@@ -46,7 +46,7 @@ const Rescard = () =>{
             </Typography>
             </CardContent>
             <div>
-            <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> //readOnly for default rating
+            <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> 
             <Button>Book!</Button> 
             </div>
             

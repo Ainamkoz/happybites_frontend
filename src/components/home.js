@@ -8,12 +8,12 @@ const Home  = ()=>{
     return(
         <>
         <div className="home">
-            <Grid direction="row">
-                <Grid xs="12" xl="6">
+            <Grid display="flex" spacing="4" direction="row" justify="space-around" alignItems="flex-end">
+                <Grid item xs={12} sm={6}>
                 <Typography variant="h1" align="center" gutterBottom>Enjoy looking for some inspiration and planning your events!</Typography>
             
             <Router>
-            <ButtonGroup disableElevation variant="contained" color="primary" >
+            <ButtonGroup disableElevation variant="contained" color="primary" display="flex" justify="flex-end" >
                 <Link to="/inspiration">
                     <Button>Inspiration</Button>
                 </Link>
@@ -23,7 +23,7 @@ const Home  = ()=>{
             </ButtonGroup>
             </Router>       
                 </Grid>
-                <Grid xs="12" xl="6">
+                <Grid  item xs={12} sm={6} >
                     <img src={Homeimg} alt="home-img-cheers"/>
                 </Grid>
              
@@ -34,7 +34,7 @@ const Home  = ()=>{
             <Typography variant="h2" align="center" gutterBottom> Don't think twice and join our happy community! </Typography>
         </div>
         <Container>
-           <Typography variant="h3" align="center" gutterBottom> You can find our Happy Biters all around the world, Take a look at the partners available for your events.</Typography> You can find our Happy Biters all around the world, Take a look at the partners available for your events.
+           <Typography variant="h3" align="center" gutterBottom> You can find our Happy Biters all around the world, Take a look at the partners available for your events.</Typography>
             <div><MapComponent/></div> 
         </Container>
      </>   
