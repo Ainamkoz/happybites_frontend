@@ -32,7 +32,7 @@ import {AuthContext} from '../auth/context/authContext';
     ];
     
     return (
-      <AppBar position="fixed">
+      <AppBar position="fixed" >
         <Toolbar>
           <Container direction="row" justify="space-around" alignItems="flex-start" className={classes.navbarDisplayFlex}>
           <Hidden mdUp>
