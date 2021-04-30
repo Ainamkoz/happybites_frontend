@@ -4,7 +4,7 @@ import {AuthContext} from './context/authContext';
 
 const ProtectedRoute = ( {component: Component, ...rest}) => {
     const{isAuthenticated} = useContext(AuthContext);
-    return  isAuthenticated ? <Route {...rest} render= {()=> <Component />}/> : <Redirect to='sign-in' />;
+    return  isAuthenticated ? <Route {...rest} render= {()=> <Component />}/> : <Redirect to='/sign-in' />;
 };
 
 export default ProtectedRoute;

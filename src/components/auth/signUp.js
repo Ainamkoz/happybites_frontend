@@ -54,11 +54,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Signup() {
-  const {isAuthenticated, setIsAuthenticated, error, setError} = useContext(AuthContext);
+  const {isAuthenticated, setIsAuthenticated, authError, setError} = useContext(AuthContext);
   const classes = useStyles();
   const [formState, setFormState] = useState({
-      firstname:'',
-      lastname:'',
+      firstName:'',
+      lastName:'',
       email: '',
       customertype:'',
       password: ''
@@ -81,7 +81,7 @@ export default function Signup() {
         body: JSON.stringify(formState)
       };
       try{
-      const res = await fetch('http://localhost:5000/auth/signup', options);
+      const res = await fetch('http://localhost:53691/signup', options);
       const data = await res.json();
       if(data.error) return setError (data.error); // check this part this Jorge
       localStorage.setItem('token', data.token);

@@ -11,10 +11,12 @@ img.imglogo{
     background-color: #e57373;
 }
 div.home{
+    display: flex;
     height: 100vh;
     width: 100%;
 }
 div.MuiButtonGroup-root.MuiButtonGroup-disableElevation.MuiButtonGroup-contained{
+    display: flex;
     float:left;
 }
 div.banner-home{

@@ -8,8 +8,8 @@ const Home  = ()=>{
     return(
         <>
         <div className="home">
-            <Grid display="flex" spacing="4" direction="row" justify="space-around" alignItems="flex-end">
-                <Grid item xs={12} sm={6}>
+            <Grid container display="flex" spacing="1" direction="row" justify="space-around" alignItems="flex-end">
+                <Grid container item xs={12} sm={6}>
                 <Typography variant="h1" align="center" gutterBottom>Enjoy looking for some inspiration and planning your events!</Typography>
             
             <Router>
@@ -23,7 +23,7 @@ const Home  = ()=>{
             </ButtonGroup>
             </Router>       
                 </Grid>
-                <Grid  item xs={12} sm={6} >
+                <Grid item xs={12} sm={6} >
                     <img src={Homeimg} alt="home-img-cheers"/>
                 </Grid>
              
