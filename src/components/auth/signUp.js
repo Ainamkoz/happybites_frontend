@@ -15,7 +15,9 @@ import {
 import Link from '@material-ui/core/Link';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { makeStyles } from '@material-ui/core/styles';
-import {useState} from 'react';
+import {useState, useContext} from 'react';
+import {AuthContext} from './context/authContext';
+import { Redirect } from 'react-router-dom';
 
 
 function Copyright() {
@@ -52,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Signup() {
+  const {isAuthenticated, setIsAuthenticated, error, setError} = useContext(AuthContext);
   const classes = useStyles();
   const [formState, setFormState] = useState({
       firstname:'',
@@ -65,11 +68,29 @@ export default function Signup() {
   const onChange = e =>{
      setFormState({...formState, [e.target.name]: e.target.value})
     };
-  const onSubmit = e => {
+  const onSubmit = async e => {
       e.preventDefault();
-      console.log('Submitting...')
-  }
-  
+      for (const field in formState){
+        if (!formState[field]) return alert(`Fill up your ${field}`);
+      }
+      const options={
+        method:'POST', //or PUT
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      };
+      try{
+      const res = await fetch('http://localhost:5000/auth/signup', options);
+      const data = await res.json();
+      if(data.error) return setError (data.error); // check this part this Jorge
+      localStorage.setItem('token', data.token);
+      setIsAuthenticated(true);
+      } catch (error) {
+        console.log(error);
+      }
+  };
+  if(isAuthenticated) return <Redirect to='/'/>
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -128,6 +149,7 @@ export default function Signup() {
                 label="Password"
                 type="password"
                 id="password"
+                helperText=""
                 autoComplete="current-password"
                 onChange={onChange}
               />

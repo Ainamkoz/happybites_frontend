@@ -8,24 +8,29 @@ import {
     ListItemText,
     Hidden
   } from "@material-ui/core";
+  import {useContext} from 'react';
+import {AuthContext} from './context/authContext';
   import {Link} from 'react-router-dom';
   import useStyles from "../assets/styles";
   import SideDrawer from "./drawer";
   import AccountCircleIcon from '@material-ui/icons/AccountCircle';
   import Logo from '../assets/hb-logo-white.svg';
+
+
   
-  const navLinks = [
-    { title: `About`, path: `/about` },
-    { title: `Collaborators`, path: `/collaborators` },
-    { title: `Plan event`, path: `/plan-your-event` },
-    { title: `Inspiration`, path: `/inspiration` },
-    { title: `Sign Up`, path: `/sign-up` },
-    { title: `Sign In`, path: `/sign-in` }
-  ];
-  
+
   const Header = () => {
     const classes = useStyles();
-  
+    const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
+    const navLinks = [
+      { title: `About`, path: `/about` },
+      { title: `Collaborators`, path: `/collaborators` },
+      { title: `Plan event`, path: `/plan-your-event` },
+      { title: `Inspiration`, path: `/inspiration` },
+      !isAuthenticated ? {title: `Sign Up`, path: `/sign-up` } : {title:`Sign In`, to:`/sign-in`}, //ask for this tomorrow
+      { title: `Sign In`, path: `/sign-in` }
+    ];
+    
     return (
       <AppBar position="fixed">
         <Toolbar>

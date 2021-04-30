@@ -2,6 +2,7 @@ import {MemoryRouter as Router} from 'react-router';
 import {Link} from "react-router-dom";
 import {ButtonGroup, Button, Typography, Container, Grid} from "@material-ui/core";
 import Homeimg from './assets/img/Homeimg.svg';
+import MapComponent from './map/mapComponent';
 
 const Home  = ()=>{
     return(
@@ -34,7 +35,7 @@ const Home  = ()=>{
         </div>
         <Container>
            <Typography variant="h3" align="center" gutterBottom> You can find our Happy Biters all around the world, Take a look at the partners available for your events.</Typography> You can find our Happy Biters all around the world, Take a look at the partners available for your events.
-            <div>Here the map</div>
+            {/*<div><MapComponent/></div> */}
         </Container>
      </>   
     )

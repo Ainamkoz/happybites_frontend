@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import markerCustom from "../images/restaurant.png";
+import markerCustom from "../assets/img/mapBite.svg";
 import { Link } from "react-router-dom";
 
 const MapComponent = ({ result }) => {
@@ -11,8 +11,9 @@ const MapComponent = ({ result }) => {
     iconSize: [35, 35],
   });
   return (
+    <>
     <div>
-      <MapContainer center={[52.517949885246125, 13.40569756502596]} zoom={10} scrollWheelZoom={false}>
+      <MapContainer center={[52.517949885246125, 13.40569756502596]} zoom={10} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -21,13 +22,14 @@ const MapComponent = ({ result }) => {
           <div key={result.id}>
             <Marker position={[result.lat, result.long]} icon={icon}>
               <Popup>
-                <Link to={`/restaurants/${result.id}`}>{result.restaurantname}, {result.adress}</Link>
+               {/* <Link to={`/company/${result.id}`}>{result.restaurantname}, {result.adress}</Link>*/}
               </Popup>
             </Marker>
           </div>
         ))}
       </MapContainer>
     </div>
+    </>
   );
 };
 
