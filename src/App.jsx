@@ -1,6 +1,7 @@
 import './App.css'
 import {makeStyles} from "@material-ui/core/styles";
 import {Switch ,Route} from 'react-router-dom';
+import ProtectedRoute from './components/auth/protectedRoute'
 import Header from './components/header/header';
 import Home from './components/home';
 import Footer from './components/footer';
@@ -51,7 +52,7 @@ function App() {
       <Route exact path='/inspiration' component={Inspiration}/>
       <Route exact path='/sign-in' component={Signin} />
       <Route exact path='/sign-up' component={Signup} />
-      <Route exact path='/secret-info' component={SecretInfo} />
+      <ProtectedRoute exact path='/secret-info' component={SecretInfo} />
       <Route exact path='*' component={Notfound}/>
     </Switch>
     <Footer />

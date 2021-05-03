@@ -1,6 +1,6 @@
 const SecretInfo  = ()=>{
     return(
-        <h1>Secret info</h1>
+        <h1>Hello Biter! </h1>
     )
 }
 

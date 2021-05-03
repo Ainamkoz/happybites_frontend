@@ -14,6 +14,7 @@ import {AuthContext} from '../auth/context/authContext';
   import useStyles from "../assets/styles";
   import SideDrawer from "./drawer";
   import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+  import ExitToAppIcon from '@material-ui/icons/ExitToApp';
   import Logo from '../assets/hb-logo-white.svg';
 
 
@@ -21,15 +22,22 @@ import {AuthContext} from '../auth/context/authContext';
 
   const Header = () => {
     const classes = useStyles();
-    const {isAuthenticated, setIsAuthenticated} = useContext(AuthContext);
+    const {isAuthenticated, logOut} = useContext(AuthContext);
     const navLinks = [
       { title: `About`, path: `/about` },
       { title: `Collaborators`, path: `/collaborators` },
       { title: `Plan event`, path: `/plan-your-event` },
-      { title: `Inspiration`, path: `/inspiration` },
-      !isAuthenticated ? {title: `Sign Up`, path: `/sign-up` } : {title:`Sign In`, to:`/sign-in`}, //ask for this tomorrow
-      { title: `Sign In`, path: `/sign-in` }
+      { title: `Inspiration`, path: `/inspiration` }
     ];
+
+    if(!isAuthenticated){
+      navLinks.push({title: `Sign Up`, path: `/sign-up` })
+      navLinks.push({title: `Sign In`, path: `/sign-in` })
+    } else{
+      navLinks.push({title: `Secret`, path: `/secret-info` })
+      navLinks.push({title: `Log out`, path: `/logout` })
+    }
+
     
     return (
       <AppBar position="fixed" >
@@ -54,7 +62,10 @@ import {AuthContext} from '../auth/context/authContext';
                 ))}
               </List>
             </Hidden>
-                  <AccountCircleIcon style={{color: 'white'}} className="profile"/>
+            <Link to='/secret-info'>
+              <AccountCircleIcon style={{color: 'white'}} className="profile"/>
+            </Link>
+              <ExitToAppIcon style={{color:'white'}} onClick={logOut} /> 
           </Container>
         </Toolbar>
       </AppBar>

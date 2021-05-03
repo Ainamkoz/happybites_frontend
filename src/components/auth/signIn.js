@@ -11,6 +11,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {useState, useContext} from 'react';
+import {AuthContext} from './context/authContext';
+import { Redirect } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -46,8 +49,39 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  const {isAuthenticated, setIsAuthenticated, authError, setError} = useContext(AuthContext);
   const classes = useStyles();
-
+  const [formState, setFormState] = useState({
+      email: '',
+      password: ''
+  });
+  const { email, password } = formState;
+  const onChange = e =>{
+     setFormState({...formState, [e.target.name]: e.target.value})
+    };
+  const onSubmit = async e => {
+      e.preventDefault();
+      for (const field in formState){
+        if (!formState[field]) return alert(`Fill up your ${field}`);
+      }
+      const options={
+        method:'POST', 
+        headers:{
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      };
+      try{
+      const res = await fetch(`${process.env.REACT_APP_BACKEND}/signin`, options);
+      const data = await res.json();
+      if(data.error) return setError (data.error); 
+      localStorage.setItem('token', data.token);
+      setIsAuthenticated(true);
+      } catch (error) {
+        console.log(error);
+      }
+  };
+  if(isAuthenticated) return <Redirect to='/'/>
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -58,7 +92,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={onSubmit} >
           <TextField
             variant="outlined"
             margin="normal"
@@ -68,6 +102,7 @@ export default function SignIn() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            onChange={onChange}
             autoFocus
           />
           <TextField
@@ -79,6 +114,7 @@ export default function SignIn() {
             label="Password"
             type="password"
             id="password"
+            onChange={onChange}
             autoComplete="current-password"
           />
           <FormControlLabel

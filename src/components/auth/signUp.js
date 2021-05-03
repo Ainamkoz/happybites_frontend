@@ -81,7 +81,7 @@ export default function Signup() {
         body: JSON.stringify(formState)
       };
       try{
-      const res = await fetch('http://localhost:53691/signup', options);
+      const res = await fetch(`${process.env.REACT_APP_BACKEND}/signup`, options);
       const data = await res.json();
       if(data.error) return setError (data.error); // check this part this Jorge
       localStorage.setItem('token', data.token);
