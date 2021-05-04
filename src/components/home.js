@@ -1,4 +1,4 @@
-import {MemoryRouter as Router} from 'react-router';
+
 import {Link} from "react-router-dom";
 import {ButtonGroup, Button, Typography, Container, Grid} from "@material-ui/core";
 import Homeimg from './assets/img/Homeimg.svg';
@@ -8,23 +8,17 @@ const Home  = ()=>{
     return(
         <>
         <div className="home">
-            <Grid container display="flex" spacing="1" direction="row" justify="space-around" alignItems="flex-end">
-                <Grid container item xs={12} sm={6}>
+            <Grid container display="flex" spacing="1" direction="row" justify="space-around"alignItems="center">
+                <Grid item xs={12} md={6}>
                 <Typography variant="h1" align="center" gutterBottom>Enjoy looking for some inspiration and planning your events!</Typography>
-            
-            <Router>
-            <ButtonGroup disableElevation variant="contained" color="primary" display="flex" justify="flex-end" >
-                <Link to="/inspiration">
-                    <Button>Inspiration</Button>
-                </Link>
-                <Link to="/plan-your-event">
-                    <Button>Plan an event</Button>
-                </Link>
-            </ButtonGroup>
-            </Router>       
+                <div>
+                <Link to='/inspiration' style={{textDecoration:'none'}}><Button>Inspiration</Button></Link>
+                <Link to='/plan-your-event' style={{textDecoration:'none'}}><Button>Plan your event</Button></Link>
+                </div>
                 </Grid>
-                <Grid item xs={12} sm={6} >
-                    <img src={Homeimg} alt="home-img-cheers"/>
+
+                <Grid item xs={12} md={6}>
+                    <img src={Homeimg} alt="home-img-cheers" style={{width:"48rem"}} />
                 </Grid>
              
             </Grid>

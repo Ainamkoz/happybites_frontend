@@ -14,7 +14,6 @@ import {AuthContext} from '../auth/context/authContext';
   import useStyles from "../assets/styles";
   import SideDrawer from "./drawer";
   import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-  import ExitToAppIcon from '@material-ui/icons/ExitToApp';
   import Logo from '../assets/hb-logo-white.svg';
 
 
@@ -40,9 +39,9 @@ import {AuthContext} from '../auth/context/authContext';
 
     
     return (
-      <AppBar position="fixed" >
+      <AppBar position="static" >
         <Toolbar>
-          <Container direction="row" justify="space-around" alignItems="flex-start" className={classes.navbarDisplayFlex}>
+          <Container direction="row" maxWidth="md" justify="space-around" alignItems="flex-start" className={classes.navbarDisplayFlex}>
           <Hidden mdUp>
               <SideDrawer navLinks={navLinks} />
             </Hidden>
