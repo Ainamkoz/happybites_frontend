@@ -20,27 +20,28 @@ const Inscards = () => {
   const { allIdeas, selectedIdea, setSelectedIdea, loading } = useContext(
     AuthContext
   );
+  console.log(selectedIdea);
 
+  const showIdeas = selectedIdea.map(item => {
     return (
-        selectedIdea.map(item => {
       <div>
         <CssBaseline />
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <Grid xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image={item.images}
                     title="Image Title"
+                    component="img"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5">
-                      Heading
+                      {item.title}
                     </Typography>
 
-                    <Typography> </Typography>
+                    <Typography> {item.description} </Typography>
                   </CardContent>
                   <CardActions>
                     <Button size="small" color="primary">
@@ -52,12 +53,13 @@ const Inscards = () => {
                   </CardActions>
                 </Card>
               </Grid>
-            ))}
           </Grid>
         </Container>
       </div>
-    })
-  )
-}
+    );
+  });
+  if (loading) return <div> Loading... </div>;
+  return <>{showIdeas}</>;
+};
 
 export default Inscards;
