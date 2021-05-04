@@ -11,7 +11,7 @@ const Home  = ()=>{
             <Grid container display="flex" spacing="1" direction="row" justify="space-around"alignItems="center">
                 <Grid item xs={12} md={6}>
                 <Typography variant="h1" align="center" gutterBottom>Enjoy looking for some inspiration and planning your events!</Typography>
-                <div>
+                <div className="home-btn">
                 <Link to='/inspiration' style={{textDecoration:'none'}}><Button>Inspiration</Button></Link>
                 <Link to='/plan-your-event' style={{textDecoration:'none'}}><Button>Plan your event</Button></Link>
                 </div>

@@ -20,12 +20,19 @@ div.MuiButtonGroup-root.MuiButtonGroup-disableElevation.MuiButtonGroup-contained
     float:left;
 }
 div.banner-home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
     height: 25rem;
     width: 100%;
     background-color: #e57373;
     color: white;
+}
+div.home-btn{
+  display: flex;
+  justify-content: center;
 }
 
 .leaflet-container {
