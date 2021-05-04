@@ -65,7 +65,6 @@ import {AuthContext} from '../auth/context/authContext';
             <Link to='/secret-info'>
               <AccountCircleIcon style={{color: 'white'}} className="profile"/>
             </Link>
-              <ExitToAppIcon style={{color:'white'}} onClick={logOut} /> 
           </Container>
         </Toolbar>
       </AppBar>
