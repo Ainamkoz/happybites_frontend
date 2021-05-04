@@ -17,7 +17,7 @@ const About = ()=>{
             <Grid container justify="flex-end" spacing="4"> 
                 <Grid item xs={12} sm={6} md={4}>
                     <Card>
-                        <CardMedia image={Aina}/>
+                        <CardMedia image={Aina} component="img" alt="Aina"/>
                         <CardContent>
                             <Typography center variant="h4" gutterBottom>Aina</Typography>
                         </CardContent>
@@ -25,7 +25,7 @@ const About = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                     <Card>
-                        <CardMedia image={Linh}/>
+                        <CardMedia image={Linh} component="img" alt="Linh"/>
                         <CardContent>
                             <Typography variant="h4" gutterBottom>Linh</Typography>
                         </CardContent>
@@ -33,7 +33,7 @@ const About = ()=>{
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
                     <Card>
-                        <CardMedia image={Maria} />
+                        <CardMedia image={Maria} component="img" alt="Maria"/>
                         <CardContent>
                             <Typography variant="h4" gutterBottom>Maria</Typography>
                         </CardContent>
