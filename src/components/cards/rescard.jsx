@@ -1,60 +1,98 @@
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import {Button} from '@material-ui/core';
-import Rating from '@material-ui/lab/Rating'
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useState, useContext } from "react";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import { Button } from "@material-ui/core";
+import Rating from "@material-ui/lab/Rating";
+import { AuthContext } from "../auth/context/authContext";
+import ReactPaginate from "react-paginate";
 
-
-
-const useStyles = makeStyles((Theme) => ({
+const useStyles = makeStyles(Theme => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   details: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
   content: {
-    flex: '1 0 auto',
+    flex: "1 0 auto",
   },
   cover: {
     width: 151,
-  }
+  },
 }));
 
-const Rescard = () =>{
+const Rescard = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const { allRestau, selectedRestau, setSelectedRestau, loading } = useContext(
+    AuthContext
+  );
 
-    return (
+  // React pagination
+  const [pageNum, setPageNum] = useState(0);
+  const cardsPerPage = 1;
+  const pagesVisited = pageNum * cardsPerPage;
+
+  const displayCards = selectedRestau
+    .slice(pagesVisited, pagesVisited + cardsPerPage)
+    .map(item => {
+      return (
         <div>
-        <Card className={classes.root}>
-        <CardMedia
-            className={classes.cover}
-            image="https://media-cdn.tripadvisor.com/media/photo-p/15/dc/63/6a/photo0jpg.jpg"
-            title="Codo restaurant"
-        />
-        <div className={classes.details}>
-            <CardContent className={classes.content}>
-            <Typography component="h5" variant="h5">
-                Live From Space
-            </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-                Mac Miller
-            </Typography>
-            </CardContent>
-            <div>
-            <Rating name="half-rating" defaultValue={2.5} precision={0.5} /> 
-            <Button>Book!</Button> 
+          <Card className={classes.root}>
+            {item && (
+              <CardMedia
+                component="img"
+                alt="Codo restaurant"
+                className={classes.cover}
+                image={item.images}
+                title="Codo restaurant"
+              />
+            )}
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <Typography component="h5" variant="h5">
+                  {item.company_name}
+                </Typography>
+                <Typography variant="subtitle1" color="textSecondary">
+                  {item.description}
+                </Typography>
+              </CardContent>
+              <div>
+                <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+                <Button>Book!</Button>
+              </div>
             </div>
-            
-            </div>
-        </Card>
-    </div>
-  )
-  }
+          </Card>
+        </div>
+      );
+    });
+  const pageCount = Math.ceil(selectedRestau.length / cardsPerPage);
+  const changePage = ({ selected }) => {
+    setPageNum(selected);
+  };
 
+  if (loading) return <div> Loading... </div>;
+
+  return (
+    <div className="container mt-5">
+      <div className="row">
+        {displayCards}
+        <ReactPaginate
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"paginationBtns"}
+          previousLinkClassName={"previousBtn"}
+          nextLinkClassName={"nextBtn"}
+          disabledClassName={"paginationDisabled"}
+          activeClassName={"paginationActive"}
+        />
+      </div>
+    </div>
+  );
+};
 
 export default Rescard;
