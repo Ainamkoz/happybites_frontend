@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import ShareInsBtn from '../userSite/shareIns';
+import CardShareIns from '../userSite/cardProIns';
+import TextField from '@material-ui/core/TextField';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -13,8 +17,8 @@ function TabPanel(props) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -34,8 +38,8 @@ TabPanel.propTypes = {
 
 function a11yProps(index) {
   return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -43,15 +47,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    display: 'flex',
-    height: 224,
   },
-  tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`,
-  },
+
 }));
 
-export default function SecretInfo() {
+export default function SimpleTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -60,37 +60,39 @@ export default function SecretInfo() {
   };
 
   return (
+    <>
     <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        className={classes.tabs}
-      >
-        <Tab label="Profile details" {...a11yProps(0)} />
-        <Tab label="Event Requested" {...a11yProps(1)} />
-        <Tab label="Booked Events" {...a11yProps(2)} />
-        <Tab label="Share Inspiration" {...a11yProps(3)} />
-        <Tab label="Favourites" {...a11yProps(4)} />
-      </Tabs>
-      <TabPanel value={value} index={0}>
-        Item One
+      <AppBar position="static">
+        <Typography variant="h6" align="right" className="pName">Hi Jorge!</Typography>
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+          <Tab label="Company Details" {...a11yProps(0)} />
+          <Tab label="Messages" {...a11yProps(1)} />
+          <Tab label="Share Idea" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel height="100vh" value={value} index={0}>
+        <div className="profilePmenu">
+          <Typography>Item One</Typography>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+      <div className="profilePmenu">
+          <Typography>Item Two</Typography>
+        </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
+      <div className="profilePmenu" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+          <Typography variant="h5" align="center">You can share some of your products, meals, photography, ... Anything that it can help the community to know more about your businness</Typography>         
+          <div>
+            <ShareInsBtn/>
+          </div>
+          <div>
+            <Typography variant="h5" align="center">Current Ideas Posted</Typography>
+            <CardShareIns/>
+          </div>
+        </div>
       </TabPanel>
     </div>
+    </>
   );
 }
-

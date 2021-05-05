@@ -17,16 +17,15 @@ import SecretInfo from './components/auth/secretInfo';
 import Notfound from './components/notFound';
 import "typeface-heebo";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import pink from '@material-ui/core/colors/pink';
-import cyan from '@material-ui/core/colors/cyan';
+import { deepOrange, grey} from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-          main: pink[900],
+          main: grey[50],
         },
         secondary: {
-          main: cyan[800]
+          main: deepOrange[700],
         },
       },
       typography: {

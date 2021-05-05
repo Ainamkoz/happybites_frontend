@@ -14,7 +14,7 @@ import {AuthContext} from '../auth/context/authContext';
   import useStyles from "../assets/styles";
   import SideDrawer from "./drawer";
   import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-  import Logo from '../assets/hb-logo-white.svg';
+  import Logo from '../assets/color-logo.svg';
 
 
   
@@ -36,10 +36,9 @@ import {AuthContext} from '../auth/context/authContext';
       navLinks.push({title: `Secret`, path: `/secret-info` })
       navLinks.push({title: `Log out`, path: `/logout` })
     }
-
     
     return (
-      <AppBar position="static" >
+      <AppBar position="static">
         <Toolbar>
           <Container direction="row" maxWidth="md" justify="space-around" alignItems="flex-start" className={classes.navbarDisplayFlex}>
           <Hidden mdUp>
@@ -62,7 +61,7 @@ import {AuthContext} from '../auth/context/authContext';
               </List>
             </Hidden>
             <Link to='/secret-info'>
-              <AccountCircleIcon style={{color: 'white'}} className="profile"/>
+              <AccountCircleIcon style={{color: '#F86D70', width:'40px', height:'auto'}} className="profile"/>
             </Link>
           </Container>
         </Toolbar>
