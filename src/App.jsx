@@ -13,7 +13,7 @@ import Companybook from './components/companyBook';
 import Eventplan from './components/eventPlan';
 import Signin from './components/auth/signIn';
 import Signup from './components/auth/signUp';
-import SecretInfo from './components/auth/secretInfo';
+import UserProfile from './components/auth/UserProfile';
 import Notfound from './components/notFound';
 import "typeface-heebo";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
@@ -51,7 +51,7 @@ function App() {
       <Route exact path='/inspiration' component={Inspiration}/>
       <Route exact path='/sign-in' component={Signin} />
       <Route exact path='/sign-up' component={Signup} />
-      <ProtectedRoute exact path='/secret-info' component={SecretInfo} />
+      <ProtectedRoute exact path='/user-profile' component={UserProfile} />
       <Route exact path='*' component={Notfound}/>
     </Switch>
     <Footer />

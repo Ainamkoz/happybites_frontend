@@ -31,11 +31,7 @@ import {AuthContext} from '../auth/context/authContext';
 
     if(!isAuthenticated){
       navLinks.push({title: `Sign Up`, path: `/sign-up` })
-      navLinks.push({title: `Sign In`, path: `/sign-in` })
-    } else{
-      navLinks.push({title: `Secret`, path: `/secret-info` })
-      navLinks.push({title: `Log out`, path: `/logout` })
-    }
+    } 
     
     return (
       <AppBar position="static">
@@ -54,15 +50,19 @@ import {AuthContext} from '../auth/context/authContext';
                 className={classes.navDisplayFlex}
               >
                 {navLinks.map(({ title, path }) => (
-                  <ListItem button>
-                  <ListItemText><Link key={title} to={path} style={{textDecoration:'none'}}>{title}</Link></ListItemText>
-                </ListItem>
+                    <ListItem button component={Link} to={path} >
+                      <ListItemText>{title}</ListItemText>
+                    </ListItem>
                 ))}
+                {isAuthenticated && (<ListItem button onClick={logOut}>
+                  <ListItemText>Log out</ListItemText>
+                </ListItem>)}
+                
               </List>
             </Hidden>
-            <Link to='/secret-info'>
+            <ListItem button component={Link} to='/user-profile' >
               <AccountCircleIcon style={{color: '#F86D70', width:'40px', height:'auto'}} className="profile"/>
-            </Link>
+            </ListItem>
           </Container>
         </Toolbar>
       </AppBar>
