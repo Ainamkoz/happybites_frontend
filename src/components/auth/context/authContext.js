@@ -7,17 +7,17 @@ const AuthState = ({children}) => {
     const [user, setUser] = useState({});
     const [authError, setError] = useState('');
     const [allRestau, setAllRestau] = useState([]);
-    const [singleRestau, setSingleRestau] = useState({});
+    const [searchService, setsearchService] = useState("");
+    const [singleRestau, setSingleRestau] = useState("");
+    const [userInput, setUserInput] = useState("");
     const [selectedRestau, setSelectedRestau] = useState([]);
     const [loading, setLoading] = useState(null);
     const [allIdeas, setAllIdeas] = useState([]);
     const [selectedIdea, setSelectedIdea] = useState([]);
 
-
-
     useEffect(() => {
         setLoading(true);
-        fetch('http://localhost:5000/company')
+        fetch('http://localhost:5000/services')
           .then(res => res.json())
           .then(data => {
             setAllRestau(() => data);
@@ -76,9 +76,10 @@ const AuthState = ({children}) => {
         setTimeout(setError(''), 3000);
     }, [authError]);
 
+
+
     return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, authError, setError, logOut, allRestau, 
-        selectedRestau,
-        setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea,
+        selectedRestau, setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea,
         loading}} >{children} </AuthContext.Provider>;
 };
 

@@ -13,7 +13,7 @@ import {
 import useStyles from "../assets/styles";
 import { AuthContext } from "../auth/context/authContext";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [1];
 
 const Inscards = () => {
   const classes = useStyles();
@@ -28,13 +28,14 @@ const Inscards = () => {
         <CssBaseline />
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-              <Grid xs={12} sm={6} md={4}>
+            {cards.map(card => 
+              <Grid item key={card} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
                     image={item.images}
-                    title="Image Title"
                     component="img"
+                    title="Image Title"
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5">
@@ -53,6 +54,7 @@ const Inscards = () => {
                   </CardActions>
                 </Card>
               </Grid>
+            )}
           </Grid>
         </Container>
       </div>
