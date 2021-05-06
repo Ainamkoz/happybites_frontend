@@ -34,7 +34,7 @@ const Rescard = () => {
 
   // React pagination
   const [pageNum, setPageNum] = useState(0);
-  const cardsPerPage = 1;
+  const cardsPerPage = 6;
   const pagesVisited = pageNum * cardsPerPage;
 
   const displayCards = selectedRestau
@@ -55,14 +55,14 @@ const Rescard = () => {
             <div className={classes.details}>
               <CardContent className={classes.content}>
                 <Typography component="h5" variant="h5">
-                  {item.company_name}
+                  {item.service_name}
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">
                   {item.description}
                 </Typography>
               </CardContent>
               <div>
-                <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+                <Rating name="half-rating" defaultValue={item.rating} precision={0.5} />
                 <Button>Book!</Button>
               </div>
             </div>
