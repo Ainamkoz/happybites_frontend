@@ -13,20 +13,19 @@ import Companybook from './components/companyBook';
 import Eventplan from './components/eventPlan';
 import Signin from './components/auth/signIn';
 import Signup from './components/auth/signUp';
-import SecretInfo from './components/auth/secretInfo';
+import UserProfile from './components/auth/UserProfile';
 import Notfound from './components/notFound';
 import "typeface-heebo";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
-import pink from '@material-ui/core/colors/pink';
-import cyan from '@material-ui/core/colors/cyan';
+import { deepOrange, grey} from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-          main: pink[900],
+          main: grey[50],
         },
         secondary: {
-          main: cyan[800]
+          main: deepOrange[700],
         },
       },
       typography: {
@@ -52,7 +51,7 @@ function App() {
       <Route exact path='/inspiration' component={Inspiration}/>
       <Route exact path='/sign-in' component={Signin} />
       <Route exact path='/sign-up' component={Signup} />
-      <ProtectedRoute exact path='/secret-info' component={SecretInfo} />
+      <ProtectedRoute exact path='/user-profile' component={UserProfile} />
       <Route exact path='*' component={Notfound}/>
     </Switch>
     <Footer />
