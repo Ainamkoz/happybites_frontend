@@ -113,10 +113,7 @@ const AuthState = ({children}) => {
         setTimeout(setError(''), 3000);
     }, [authError]);
 
-    return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, userProfile, authError, setError, signUp,signIn, logOut, allRestau, 
-        selectedRestau,
-        setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea,
-        loading}} >{children} </AuthContext.Provider>;
+    return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, userProfile, authError, setError, signUp,signIn, logOut, allRestau, selectedRestau, setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea, loading}} >{children} </AuthContext.Provider>;
 };
 
 export default AuthState;
