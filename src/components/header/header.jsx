@@ -14,7 +14,7 @@ import {AuthContext} from '../auth/context/authContext';
   import useStyles from "../assets/styles";
   import SideDrawer from "./drawer";
   import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-  import Logo from '../assets/hb-logo-white.svg';
+  import Logo from '../assets/color-logo.svg';
 
 
   
@@ -31,15 +31,10 @@ import {AuthContext} from '../auth/context/authContext';
 
     if(!isAuthenticated){
       navLinks.push({title: `Sign Up`, path: `/sign-up` })
-      navLinks.push({title: `Sign In`, path: `/sign-in` })
-    } else{
-      navLinks.push({title: `Secret`, path: `/secret-info` })
-      navLinks.push({title: `Log out`, path: `/logout` })
-    }
-
+    } 
     
     return (
-      <AppBar position="static" >
+      <AppBar position="static">
         <Toolbar>
           <Container direction="row" maxWidth="md" justify="space-around" alignItems="flex-start" className={classes.navbarDisplayFlex}>
           <Hidden mdUp>
@@ -55,15 +50,19 @@ import {AuthContext} from '../auth/context/authContext';
                 className={classes.navDisplayFlex}
               >
                 {navLinks.map(({ title, path }) => (
-                  <ListItem button>
-                  <ListItemText><Link key={title} to={path} style={{textDecoration:'none'}}>{title}</Link></ListItemText>
-                </ListItem>
+                    <ListItem button component={Link} to={path} >
+                      <ListItemText>{title}</ListItemText>
+                    </ListItem>
                 ))}
+                {isAuthenticated && (<ListItem button onClick={logOut}>
+                  <ListItemText>Log out</ListItemText>
+                </ListItem>)}
+                
               </List>
             </Hidden>
-            <Link to='/secret-info'>
-              <AccountCircleIcon style={{color: 'white'}} className="profile"/>
-            </Link>
+            <ListItem button component={Link} to='/user-profile' >
+              <AccountCircleIcon style={{color: '#F86D70', width:'40px', height:'auto'}} className="profile"/>
+            </ListItem>
           </Container>
         </Toolbar>
       </AppBar>

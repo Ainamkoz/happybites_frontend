@@ -4,6 +4,7 @@ export const AuthContext = createContext();
 
 const AuthState = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userProfile, setUserProfile] = useState()
     const [user, setUser] = useState({});
     const [authError, setError] = useState('');
     const [allRestau, setAllRestau] = useState([]);
@@ -45,7 +46,40 @@ const AuthState = ({children}) => {
           });
         setLoading(false);
       }, []);
+    
+      const signUp = async (options)=>{
+        try{
+          const res = await fetch(`${process.env.REACT_APP_BACKEND}/signup`, options);
+          const data = await res.json();
+          if(data.error) return setError (data.error); // check this part this Jorge
+          localStorage.setItem('token', data.token);
+          const resUserProfile =  await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/getcurrentuser`, {headers: {token: data.token}});
+          const userProfile = await resUserProfile.json()
+          setUserProfile(userProfile)
+          setIsAuthenticated(true);
+          } catch (error) {
+            console.log(error);
+          }
+      }
 
+      const signIn = async (options)=>{
+        try{
+          const res = await fetch(`${process.env.REACT_APP_BACKEND}/signin`, options);
+          const data = await res.json();
+          if(data.error) return setError (data.error); 
+          localStorage.setItem('token', data.token); 
+          const resUserProfile =  await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/getcurrentuser`, {headers: {token: data.token}});
+          const userProfile = await resUserProfile.json()
+          setUserProfile(userProfile)
+          setIsAuthenticated(true);
+          } catch (error) {
+            console.log(error);
+          }
+      }
+
+
+      
+      
 
     const logOut = ()=>{
         localStorage.removeItem('token');
@@ -62,7 +96,10 @@ const AuthState = ({children}) => {
             const res = await fetch(`${process.env.REACT_APP_BACKEND}/me`, options);
             const {success} = await res.json();
             if (success) {
-                console.log('Welcome back')
+              const resUserProfile =  await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/getcurrentuser`, {headers: {token: token}});
+              const userProfile = await resUserProfile.json()
+              console.log(userProfile)
+                setUserProfile(userProfile)
                 setIsAuthenticated(true);
             } else {
                 localStorage.removeItem('token');
@@ -76,11 +113,9 @@ const AuthState = ({children}) => {
         setTimeout(setError(''), 3000);
     }, [authError]);
 
-
-
-    return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, authError, setError, logOut, allRestau, 
-        selectedRestau, setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea,
-        loading}} >{children} </AuthContext.Provider>;
+    return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, userProfile, authError, setError, signUp,signIn, logOut, allRestau, 
+        selectedRestau,
+        setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea,loading}} >{children} </AuthContext.Provider>;
 };
 
 export default AuthState;

@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
-  const {isAuthenticated, setIsAuthenticated, authError, setError} = useContext(AuthContext);
+  const {isAuthenticated, setIsAuthenticated, signIn, authError, setError} = useContext(AuthContext);
   const classes = useStyles();
   const [formState, setFormState] = useState({
       email: '',
@@ -71,15 +71,7 @@ export default function SignIn() {
         },
         body: JSON.stringify(formState)
       };
-      try{
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}/signin`, options);
-      const data = await res.json();
-      if(data.error) return setError (data.error); 
-      localStorage.setItem('token', data.token);
-      setIsAuthenticated(true);
-      } catch (error) {
-        console.log(error);
-      }
+      signIn(options)
   };
   if(isAuthenticated) return <Redirect to='/'/>
   return (

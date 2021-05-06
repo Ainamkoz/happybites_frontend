@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Signup() {
-  const {isAuthenticated, setIsAuthenticated, authError, setError} = useContext(AuthContext);
+  const {isAuthenticated, setIsAuthenticated, authError, signUp, setError} = useContext(AuthContext);
   const classes = useStyles();
   const [formState, setFormState] = useState({
       firstName:'',
@@ -80,15 +80,7 @@ export default function Signup() {
         },
         body: JSON.stringify(formState)
       };
-      try{
-      const res = await fetch(`${process.env.REACT_APP_BACKEND}/signup`, options);
-      const data = await res.json();
-      if(data.error) return setError (data.error); // check this part this Jorge
-      localStorage.setItem('token', data.token);
-      setIsAuthenticated(true);
-      } catch (error) {
-        console.log(error);
-      }
+      signUp(options)
   };
   if(isAuthenticated) return <Redirect to='/'/>
   return (
