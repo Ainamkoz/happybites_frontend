@@ -32,11 +32,7 @@ const ShareInsBtn = () => {
           <DialogContentText>
             Fill the fields and the post will be instanly added in the inspiration section. This is a way to publicity your businness
           </DialogContentText>
-          <label htmlFor="contained-button-file">
-              <Fab component="span">
-                <AddPhotoAlternateIcon />
-              </Fab>
-          </label>
+
           <TextField
             autoFocus
             margin="dense"

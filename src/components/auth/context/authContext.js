@@ -4,7 +4,7 @@ export const AuthContext = createContext();
 
 const AuthState = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [userProfile, setUserProfile] = useState()
+    const [userProfile, setUserProfile] = useState();
     const [user, setUser] = useState({});
     const [authError, setError] = useState('');
     const [allRestau, setAllRestau] = useState([]);
@@ -78,9 +78,6 @@ const AuthState = ({children}) => {
       }
 
 
-      
-      
-
     const logOut = ()=>{
         localStorage.removeItem('token');
         setIsAuthenticated(false);
@@ -110,10 +107,33 @@ const AuthState = ({children}) => {
     }, []);
 
     useEffect(() => {
+      const token = localStorage.getItem('token');
+      const verifySession = async () => {
+          const options = {
+              headers:{
+                  token
+              }}
+          const res = await fetch(`${process.env.REACT_APP_BACKEND}/me`, options);
+          const {success} = await res.json();
+          if (success) {
+            const resUserProfile =  await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/newuserprofile`, {headers: {token: token}});
+            const userProfile = await resUserProfile.json()
+            console.log(userProfile)
+              setUserProfile(userProfile)
+              setIsAuthenticated(true);
+          } else {
+              localStorage.removeItem('token');
+              setIsAuthenticated(false);
+          }
+      };
+      verifySession()
+  }, []);
+
+    useEffect(() => {
         setTimeout(setError(''), 3000);
     }, [authError]);
 
-    return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, userProfile, authError, setError, signUp,signIn, logOut, allRestau, selectedRestau, setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea, loading}} >{children} </AuthContext.Provider>;
+    return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, userProfile, setUserProfile, authError, setError, signUp,signIn, logOut, allRestau, selectedRestau, setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea, loading}} >{children} </AuthContext.Provider>;
 };
 
 export default AuthState;

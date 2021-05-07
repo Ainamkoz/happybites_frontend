@@ -1,4 +1,4 @@
-import { Container, Grid, Box } from "@material-ui/core";
+import { Container, Grid} from "@material-ui/core";
 import Rescard from "./cards/rescard";
 import MapComponent from "./map/mapComponent";
 
@@ -10,13 +10,13 @@ const Eventplan = () => {
         cards
       </h1>
 
-      <Grid xs="12" xl="6" sm="6">
-        <Box>
-          <MapComponent />
-        </Box>
-        <Box>
-          <Rescard />
-        </Box>
+      <Grid container spacing="2">
+        <Grid item xs="12" sm="6">
+        <MapComponent />
+        </Grid>
+        <Grid item xs="12" sm="6">
+        <Rescard />
+         </Grid>
       </Grid>
     </Container>
   );

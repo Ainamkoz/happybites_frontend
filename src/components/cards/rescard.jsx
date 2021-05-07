@@ -10,6 +10,7 @@ import Rating from "@material-ui/lab/Rating";
 import { AuthContext } from "../auth/context/authContext";
 import ReactPaginate from "react-paginate";
 import MapComponent from '../map/mapComponent';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const useStyles = makeStyles(Theme => ({
   root: {
