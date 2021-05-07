@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import markerCustom from "../images/restaurant.png";
+import markerCustom from "../assets/img/mapBite.svg";
 
 const SingleMap = ({ value }) => {
   console.log("RESULT IN MAPCOMPONENET", value);

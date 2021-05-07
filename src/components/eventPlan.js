@@ -9,14 +9,13 @@ const Eventplan = () => {
         here is where the users try to find a good restaurant with searcher and
         cards
       </h1>
-
-      <Grid xs="12" xl="6" sm="6">
-        <Box>
+      <Grid container spacing="2">
+        <Grid item xs="12" sm="3">
           <MapComponent />
-        </Box>
-        <Box>
+        </Grid>
+        <Grid item xs="12" sm="9">
           <Rescard />
-        </Box>
+        </Grid>
       </Grid>
     </Container>
   );
