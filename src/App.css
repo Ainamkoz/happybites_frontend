@@ -105,3 +105,10 @@ div.profilePmenu{
 h6.pName{
   margin-right: 5rem;
 }
+
+/* CompanyBook */
+.MuiContainer-root.MuiContainer-maxWidthLg {
+  padding-top: 70px; 
+}
+
+

@@ -10,13 +10,14 @@ const Eventplan = () => {
         cards
       </h1>
 
-      <Grid xs="12" xl="6" sm="6">
-        <Box>
-          <MapComponent />
-        </Box>
-        <Box>
+      <Grid xs="12" xl="6" sm="6"
+      direction="column"
+      justify="space-evenly"
+      alignItems="baseline">
+          <MapComponent/>
+          
           <Rescard />
-        </Box>
+
       </Grid>
     </Container>
   );
