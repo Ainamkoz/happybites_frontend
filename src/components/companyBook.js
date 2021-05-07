@@ -70,8 +70,16 @@ const CompanyBook = () => {
   return myRestau ? (
     <>
       <Container>
-        <Grid container spacing={4}>
-          <Grid xs={6} sm={6} md={6}>
+        <Grid container spacing={2}>
+          <Grid>
+            <Grid item xs="12" sm="6">
+              <div>
+                Form Placeholder
+                </div>  
+            </Grid>
+          </Grid>
+
+          <Grid item xs="12" sm="6">
             <Card className={classes.root}>
               <CardMedia
                 component="img"
@@ -100,9 +108,6 @@ const CompanyBook = () => {
             </Card>
           </Grid>
         </Grid>
-        <Container>
-             
-              </Container>
       </Container>
     </>
   ) : (

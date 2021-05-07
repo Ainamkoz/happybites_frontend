@@ -44,8 +44,8 @@ function App() {
     <Switch>
       <Route exact path='/' component={Home}/>
       <Route exact path='/about' component={About}/>
-      <Route exact path='/collaborators' component={Allcompanies}/>
-      <Route exact path='/collaborators/:id' component={Company}/>
+      <Route exact path='/vision' component={Allcompanies}/>
+      <Route exact path='/vision/:id' component={Company}/>
       <Route exact path='/plan-your-event' component={Eventplan}/>
       <Route exact path='/plan-your-event/:id' component={CompanyBook}/>
       <Route exact path='/inspiration' component={Inspiration}/>
