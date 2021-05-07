@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {AuthContext} from './context/authContext';
 import CompanyInfo from './CompanyInfo'
+import NormalProfile from '../userSite/normalProfile';
 
 
 const UserProfile = () => {
@@ -9,7 +10,7 @@ const UserProfile = () => {
     if(userProfile.company){
        return  <CompanyInfo/>
     } else {
-        return 'is user'
+        return <NormalProfile/>
     }
 }
 

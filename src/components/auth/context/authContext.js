@@ -114,6 +114,7 @@ const AuthState = ({children}) => {
 
     return <AuthContext.Provider value={{isAuthenticated, setIsAuthenticated, user, setUser, userProfile, authError, setError, signUp,signIn, logOut, allRestau, 
         setAllRestau, selectedRestau, setSelectedRestau, setAllIdeas, allIdeas, selectedIdea, setSelectedIdea,loading, setLoading, myRestau, setMyRestau, error, setBasicError }} >{children} </AuthContext.Provider>;
+
 };
 
 export default AuthState;
