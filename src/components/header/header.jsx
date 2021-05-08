@@ -24,7 +24,7 @@ import {AuthContext} from '../auth/context/authContext';
     const {isAuthenticated, logOut} = useContext(AuthContext);
     const navLinks = [
       { title: `About`, path: `/about` },
-      { title: `Collaborators`, path: `/collaborators` }, /*think about this page, maybe something like "Philosophy"? */
+      { title: `Vision`, path: `/vision` }, /*think about this page, maybe something like "Philosophy"? */
       { title: `Plan event`, path: `/plan-your-event` },
       { title: `Inspiration`, path: `/inspiration` }
     ];

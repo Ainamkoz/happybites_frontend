@@ -1,7 +1,6 @@
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useState, useContext } from "react";
 import Card from "@material-ui/core/Card";
-import {Grid} from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
@@ -9,8 +8,7 @@ import { Button } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import { AuthContext } from "../auth/context/authContext";
 import ReactPaginate from "react-paginate";
-import MapComponent from '../map/mapComponent';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(Theme => ({
   root: {
@@ -31,7 +29,7 @@ const useStyles = makeStyles(Theme => ({
 const Rescard = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const { allRestau, selectedRestau, setSelectedRestau, loading } = useContext(
+  const { selectedRestau, loading } = useContext(
     AuthContext
   );
 
@@ -70,7 +68,9 @@ const Rescard = () => {
                   defaultValue={item.rating}
                   precision={0.5}
                 />
+                <Link to={`/plan-your-event/${item.service_id}`}>
                 <Button>Book!</Button>
+             </Link> 
               </div>
             </div>
           </Card>

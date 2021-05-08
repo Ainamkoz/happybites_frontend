@@ -8,13 +8,12 @@ const AuthState = ({children}) => {
     const [user, setUser] = useState({});
     const [authError, setError] = useState('');
     const [allRestau, setAllRestau] = useState([]);
-    const [searchService, setsearchService] = useState("");
-    const [singleRestau, setSingleRestau] = useState("");
-    const [userInput, setUserInput] = useState("");
-    const [selectedRestau, setSelectedRestau] = useState([]);
+    const [selectedRestau, setSelectedRestau] = useState([])
+    const [myRestau, setMyRestau] = useState([]);
     const [loading, setLoading] = useState(null);
     const [allIdeas, setAllIdeas] = useState([]);
     const [selectedIdea, setSelectedIdea] = useState([]);
+    const [error, setBasicError] = useState('');
 
     useEffect(() => {
         setLoading(true);
