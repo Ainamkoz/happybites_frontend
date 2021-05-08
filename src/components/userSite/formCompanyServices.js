@@ -1,12 +1,29 @@
 import {useState, useContext} from 'react';
 import {AuthContext} from '../auth/context/authContext';
-import { Redirect } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import {Container, Typography, Grid, TextField, Button} from '@material-ui/core';
 import { makeStyles} from "@material-ui/core/styles";
 
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
 const CompanyServices = () => {
-    const {service_name, description, address, prices, capacity, assortment, images} = useContext(AuthContext);
     const classes = useStyles();
+    const {userProfile, setUserProfile} = useContext(AuthContext);
     const [formState, setFormState] = useState({
         service_name:'',
         description:'',
@@ -28,13 +45,16 @@ const CompanyServices = () => {
         const options={
           method:'POST',
           headers:{
+            'token': localStorage.getItem('token'),
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(formState)
         };
-        signUp(options)
+        
+        const res = await fetch(`${process.env.REACT_APP_BACKEND}/services/newservice`, options)
+        const {newUserProfile} = await res.json()
+        setUserProfile(prev => ({...prev, result: newUserProfile}))
     };
-    if(isAuthenticated) return <Redirect to='/'/>
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
