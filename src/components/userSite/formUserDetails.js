@@ -1,7 +1,6 @@
 import {useState, useContext} from 'react';
 import {AuthContext} from '../auth/context/authContext';
 import { makeStyles} from "@material-ui/core/styles";
-import { Redirect } from 'react-router-dom';
 import {Container, Typography, Grid, TextField, Button} from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -26,10 +25,11 @@ const NormalUserDetails = () => {
     const classes = useStyles();
     const {userProfile, setUserProfile} = useContext(AuthContext);
     const [formState, setFormState] = useState({
-        username:'',
+      profile_img:'',  
+      username:'',
         phone:''
     });
-    const {username, phone} = formState;
+    const {profile_img, username, phone} = formState;
     const onChange = e =>{
        setFormState({...formState, [e.target.name]: e.target.value})
       };
@@ -42,6 +42,7 @@ const NormalUserDetails = () => {
           method:'POST',
           headers:{
             'token': localStorage.getItem('token'),
+            'Accept': 'multipart/form-data',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(formState)
@@ -50,8 +51,6 @@ const NormalUserDetails = () => {
         const res = await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/newuserprofile`, options)
         const {newUserProfile} = await res.json()
         setUserProfile(prev => ({...prev, result: newUserProfile}))
-
-
     };
     if(setUserProfile) 
     return (
@@ -61,11 +60,16 @@ const NormalUserDetails = () => {
           <Typography component="h1" variant="h5">
             Fill out your profile details
           </Typography>
-          <form className={classes.form} onSubmit={onSubmit} >
+          <form action="/uploads" enctype="multipart/form-data" className={classes.form} onSubmit={onSubmit} >
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                
-
+              <input 
+              type="file" 
+              name="profile_img" 
+              accept="image/*" 
+              multiple={false} 
+              onChange={onChange} 
+              />
                 <TextField
                   required
                   fullWidth

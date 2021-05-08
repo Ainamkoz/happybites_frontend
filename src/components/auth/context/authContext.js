@@ -129,6 +129,8 @@ const AuthState = ({children}) => {
       verifySession()
   }, []);
 
+
+
     useEffect(() => {
         setTimeout(setError(''), 3000);
     }, [authError]);
