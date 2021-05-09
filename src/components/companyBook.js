@@ -91,7 +91,7 @@ const CompanyBook = () => {
     }
   }, [myRestau, id]);
 
-  if (loading) return <di>Loading ... </di>;
+  if (loading) return <div>Loading ... </div>;
 
   if (error)
     return <div>There was an error when retrieving the data: {error}</div>;

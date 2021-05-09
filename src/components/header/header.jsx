@@ -34,7 +34,7 @@ import {AuthContext} from '../auth/context/authContext';
     } 
     
     return (
-      <AppBar position="static" style={{marginBottom:'5rem'}}>
+      <AppBar position="static" style={{marginBottom:'3rem'}}>
         <Toolbar>
           <Container direction="row" maxWidth="md"  justifyContent="space-around" alignItems="center" className={classes.navbarDisplayFlex}>
           <Hidden mdUp>
@@ -61,7 +61,7 @@ import {AuthContext} from '../auth/context/authContext';
               </List>
             </Hidden>
             <ListItem button component={Link} to='/user-profile' style={{justifyContent:'flex-end'}}>
-              <AccountCircleIcon style={{color: '#F86D70', width:'40px', height:'auto'}} className="profile"/>
+              <AccountCircleIcon style={{color: '#2c2c3d', width:'40px', height:'auto'}} className="profile"/>
             </ListItem>
           </Container>
         </Toolbar>
