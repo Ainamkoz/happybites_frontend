@@ -49,7 +49,7 @@ const Rescard = () => {
                 component="img"
                 alt="Codo restaurant"
                 className={classes.cover}
-                image={item.images}
+                image={item.images} // replace later {`http://localhost:5000/uploads/${item.images}`}
                 title="Codo restaurant"
               />
             )}

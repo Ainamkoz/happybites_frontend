@@ -1,8 +1,20 @@
-import { Container, Grid } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  FormLabel,
+  TextField,
+  FormControlLabel,
+  Radio,
+  Checkbox,
+  RadioGroup,
+  Button,
+  CssBaseline,
+} from "@material-ui/core";
 import { useState, useContext, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import Link from '@material-ui/core/Link';
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
@@ -10,7 +22,7 @@ import { AuthContext } from "./auth/context/authContext";
 import { useParams } from "react-router-dom";
 import SingleMap from "./map/mapSingle";
 
-const useStyles = makeStyles(Theme => ({
+const useStyles = makeStyles( (theme) => ({
   root: {
     display: "flex",
   },
@@ -23,6 +35,23 @@ const useStyles = makeStyles(Theme => ({
   },
   cover: {
     width: 151,
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '50%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -70,14 +99,79 @@ const CompanyBook = () => {
   return myRestau ? (
     <>
       <Container>
-        <Grid container spacing={2}>
-          <Grid>
-            <Grid item xs="12" sm="6">
-              <div>
-                Form Placeholder
-                </div>  
+            <form className={classes.form} >
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="email"
+                name="email"
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Your email"
+                autoFocus
+              />
             </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="phone"
+                label="Phone"
+                name="phone"
+                autoComplete="lname"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="guest"
+                label="Guest Count"
+                name="guest"
+                autoComplete="guest"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                helperText=""
+                autoComplete="current-password"
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="eventDate"
+                label="EventDate"
+                type="eventDate"
+                id="eventDate"
+              />
+            </Grid>
+      
           </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Book
+          </Button>
+        </form>
 
           <Grid item xs="12" sm="6">
             <Card className={classes.root}>
@@ -85,7 +179,7 @@ const CompanyBook = () => {
                 component="img"
                 alt="Codo restaurant"
                 className={classes.cover}
-                image={singleRest && singleRest.images}
+                image={singleRest && singleRest.images} // {singleRest && `http://localhost:5000/uploads/${singleRest.images}`} replace later with db
                 title="Codo restaurant"
               />
               <div className={classes.details}>
@@ -107,7 +201,6 @@ const CompanyBook = () => {
               </div>
             </Card>
           </Grid>
-        </Grid>
       </Container>
     </>
   ) : (
