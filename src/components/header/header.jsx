@@ -34,7 +34,7 @@ import {AuthContext} from '../auth/context/authContext';
     } 
     
     return (
-      <AppBar position="static">
+      <AppBar position="static" style={{marginBottom:'5rem'}}>
         <Toolbar>
           <Container direction="row" maxWidth="md"  justifyContent="space-around" alignItems="center" className={classes.navbarDisplayFlex}>
           <Hidden mdUp>
