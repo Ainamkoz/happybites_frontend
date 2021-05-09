@@ -2,20 +2,25 @@ import {Typography, Container, CardMedia,Card, CardContent, Grid} from '@materia
 import Aina from "./assets/img/Aina.svg";
 import Linh from "./assets/img/Linh.svg";
 import Maria from "./assets/img/Maria.svg";
+import { makeStyles} from "@material-ui/core/styles";
 
-
+const useStyles = makeStyles((theme) => ({
+    textIntro: {
+      color:'#2c2c3d',
+      fontSize: '2rem',
+    },
+    
+  }));
 
 const About = ()=>{
+    const classes = useStyles();
     return(
         <>
             <Container>
-            <Typography variant="h2" align="center" gutterBottom>We are very happy to help you in the process of planning your events.
-        We know that it is very important to have certain guarantees when you are preparing an event, that's why we are here! 
-        We guarantee that your event will be perfect!</Typography>
-            <Typography>This is possible thanks to our creative team!</Typography>
+            <Typography variant="h4" align="center">Meet our team!</Typography>
             <Container>
             <Grid container justify="flex-end" spacing="4"> 
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={4} md={4}>
                     <Card>
                         <CardMedia image={Aina} component="img" alt="Aina"/>
                         <CardContent>
@@ -23,7 +28,7 @@ const About = ()=>{
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={4} md={4}>
                     <Card>
                         <CardMedia image={Linh} component="img" alt="Linh"/>
                         <CardContent>
@@ -31,7 +36,7 @@ const About = ()=>{
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
+                <Grid item xs={12} sm={4} md={4}>
                     <Card>
                         <CardMedia image={Maria} component="img" alt="Maria"/>
                         <CardContent>
