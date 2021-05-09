@@ -13,7 +13,7 @@ import CompanyBook from './components/companyBook';
 import Eventplan from './components/eventPlan';
 import Signin from './components/auth/signIn';
 import Signup from './components/auth/signUp';
-import UserProfile from './components/auth/UserProfile';
+import UserProfile from './components/auth/userInfo';
 import Notfound from './components/notFound';
 import "typeface-heebo";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
