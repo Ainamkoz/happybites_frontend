@@ -1,4 +1,4 @@
-import { Container, Grid, Box } from "@material-ui/core";
+import { Container, Grid} from "@material-ui/core";
 import Rescard from "./cards/rescard";
 import MapComponent from "./map/mapComponent";
 

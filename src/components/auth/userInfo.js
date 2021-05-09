@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {AuthContext} from './context/authContext';
 import CompanyInfo from './CompanyInfo'
-import NormalProfile from '../userSite/normalProfile';
+import NormalProfile from '../userSite/normalProfile'
 
 
 const UserProfile = () => {

@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 import ShareInsBtn from '../userSite/shareIns';
 import CardShareIns from '../userSite/cardProIns';
 import TextField from '@material-ui/core/TextField';
+import CompanyDetails from '../userSite/companyDetails';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -52,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function CompanyInfo() {
+const CompanyInfo = () => {
   
   const {isAuthenticated, userProfile} = useContext(AuthContext);
   const classes = useStyles();
@@ -62,12 +63,12 @@ export default function CompanyInfo() {
     setValue(newValue);
   };
 
-  return (
+  return !userProfile.result.length ? (<CompanyDetails/>): (
     <>
     <div className={classes.root}>
       <AppBar position="static">
         <Typography variant="h6" align="right" className="pName">Hi Jorge!</Typography>
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
+        <Tabs value={value} onChange={handleChange} aria-label="Profile Menu" centered>
           <Tab label="Company Details" {...a11yProps(0)} />
           <Tab label="Messages" {...a11yProps(1)} />
           <Tab label="Share Idea" {...a11yProps(2)} />
@@ -97,5 +98,7 @@ export default function CompanyInfo() {
       </TabPanel>
     </div>
     </>
-  );
+  ) 
 }
+
+export default CompanyInfo;
