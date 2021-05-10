@@ -7,7 +7,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import CardFav from './cardFav';
+import ShareInsBtn from '../userSite/shareIns';
+import CardShareIns from '../userSite/cardProIns';
+import TextField from '@material-ui/core/TextField';
+import NormalUserDetails from './formUserDetails';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function CompanyInfo() {
+const NormalProfile = () => {
   
   const {isAuthenticated, userProfile} = useContext(AuthContext);
   const classes = useStyles();
@@ -60,14 +63,14 @@ export default function CompanyInfo() {
     setValue(newValue);
   };
 
-  return (
+  return !userProfile.result.length ? (<NormalUserDetails/>) : (
     <>
     <div className={classes.root}>
       <AppBar position="static">
         <Typography variant="h6" align="right" className="pName">Hi Jorge!</Typography>
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example" centered>
-          <Tab label="Profile Details" {...a11yProps(0)} />
-          <Tab label="Messages" {...a11yProps(1)} />
+        <Tabs value={value} onChange={handleChange} aria-label="Profile Menu" centered>
+          <Tab label="Profile" {...a11yProps(0)} />
+          <Tab label="Events Requested" {...a11yProps(1)} />
           <Tab label="Favorites" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
@@ -83,9 +86,11 @@ export default function CompanyInfo() {
       </TabPanel>
       <TabPanel value={value} index={2}>
       <div className="profilePmenu" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+          <Typography variant="h5" align="center">Your Favorite Posts</Typography>         
+          
           <div>
-            <Typography variant="h5" align="center">Favorite Posts :)</Typography>
-            <CardFav/>
+            <Typography variant="h5" align="center">Current Ideas Posted</Typography>
+            <CardShareIns/>
           </div>
         </div>
       </TabPanel>
@@ -93,3 +98,4 @@ export default function CompanyInfo() {
     </>
   );
 }
+export default NormalProfile;

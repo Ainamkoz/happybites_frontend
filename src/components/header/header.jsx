@@ -24,7 +24,7 @@ import {AuthContext} from '../auth/context/authContext';
     const {isAuthenticated, logOut} = useContext(AuthContext);
     const navLinks = [
       { title: `About`, path: `/about` },
-      { title: `Collaborators`, path: `/collaborators` }, /*think about this page, maybe something like "Philosophy"? */
+      { title: `Vision`, path: `/vision` }, /*think about this page, maybe something like "Philosophy"? */
       { title: `Plan event`, path: `/plan-your-event` },
       { title: `Inspiration`, path: `/inspiration` }
     ];
@@ -34,9 +34,9 @@ import {AuthContext} from '../auth/context/authContext';
     } 
     
     return (
-      <AppBar position="static">
+      <AppBar position="static" style={{marginBottom:'3rem'}}>
         <Toolbar>
-          <Container direction="row" maxWidth="md" justify="space-around" alignItems="flex-start" className={classes.navbarDisplayFlex}>
+          <Container direction="row" maxWidth="md"  justifyContent="space-around" alignItems="center" className={classes.navbarDisplayFlex}>
           <Hidden mdUp>
               <SideDrawer navLinks={navLinks} />
             </Hidden>
@@ -60,8 +60,8 @@ import {AuthContext} from '../auth/context/authContext';
                 
               </List>
             </Hidden>
-            <ListItem button component={Link} to='/user-profile' >
-              <AccountCircleIcon style={{color: '#F86D70', width:'40px', height:'auto'}} className="profile"/>
+            <ListItem button component={Link} to='/user-profile' style={{justifyContent:'flex-end'}}>
+              <AccountCircleIcon style={{color: '#2c2c3d', width:'40px', height:'auto'}} className="profile"/>
             </ListItem>
           </Container>
         </Toolbar>

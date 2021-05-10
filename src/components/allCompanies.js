@@ -1,6 +1,15 @@
+import Company from './company';
+import Homeimg from './assets/img/Homeimg.svg'
+import {Grid} from "@material-ui/core";
+
+
+
 const Collaborators  = ()=>{
     return(
-        <h1>here is the map to know our collaborators</h1>
+        <>
+        
+        <Company/>
+        </>
     )
 }
 
