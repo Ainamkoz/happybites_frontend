@@ -26,7 +26,7 @@ const MapComponent = () => {
     }
     getAddresses()
   }, [])
-console.log(addresses);
+  console.log(addresses);
   const icon = new Icon({
     iconUrl: markerCustom,
     iconSize: [35, 35],
@@ -41,11 +41,10 @@ console.log(addresses);
         />
       {
           addresses && addresses.map((add)=>{
-            console.log(add.lat, add.lon)
             return ( 
               <Marker position={[add.results[0].geometry.location.lat, add.results[0].geometry.location.lng]} icon={icon}>
                 <Popup>
-                  <h6></h6> <br />
+                  <h4>"Company Name"</h4><h5><Link>{add.results[0].formatted_address}</Link></h5>
                 </Popup>
               </Marker>
               )
