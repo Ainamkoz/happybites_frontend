@@ -63,16 +63,16 @@ const Footer = ()=>{
             </Typography>
             </Grid>
             <Grid item xs={12} sm={4} md={4} className={classes.footerContent}>
-                <Link style={{textDecoration:'none', color: 'white'}}>
+                <Link to='/about' style={{textDecoration:'none', color: 'white'}}>
                     <Typography>About</Typography>
                 </Link>
-                <Link style={{textDecoration:'none', color: 'white'}}>
+                <Link to='/vision' style={{textDecoration:'none', color: 'white'}}>
                     <Typography>Vision</Typography>
                 </Link>
-                <Link style={{textDecoration:'none', color: 'white'}}>
+                <Link to='/plan-your-event' style={{textDecoration:'none', color: 'white'}}>
                     <Typography>Plan your event</Typography>
                 </Link>
-                <Link style={{textDecoration:'none', color: 'white'}}>
+                <Link to='/inspiration' style={{textDecoration:'none', color: 'white'}}>
                     <Typography>Some inspiration</Typography>
                 </Link>
             </Grid>
