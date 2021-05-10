@@ -15,7 +15,6 @@ const MapComponent = () => {
     const getAddresses = async () =>{
       const res = await fetch ('http://localhost:5000/services/')
       const data = await res.json()
-      setAddresses(data)
 
       const resFromGeocoder = await Promise.all(
         data.map(add => fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${add.address}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`))
@@ -27,7 +26,7 @@ const MapComponent = () => {
     }
     getAddresses()
   }, [])
-
+console.log(addresses);
   const icon = new Icon({
     iconUrl: markerCustom,
     iconSize: [35, 35],
@@ -40,14 +39,18 @@ const MapComponent = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      {/*   {
+      {
           addresses && addresses.map((add)=>{
+            console.log(add.lat, add.lon)
             return ( 
-              <Marker position={[add.results[0].geometry.lat, add.results[0].geometry.lng]} icon={icon}>
+              <Marker position={[add.results[0].geometry.location.lat, add.results[0].geometry.location.lng]} icon={icon}>
+                <Popup>
+                  <h6></h6> <br />
+                </Popup>
               </Marker>
               )
           })
-        } */}
+        } 
       </MapContainer>
     </div>
     </>
