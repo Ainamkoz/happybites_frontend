@@ -43,7 +43,7 @@ const NormalUserDetails = () => {
           headers:{
             'token': localStorage.getItem('token'),
             'Accept': 'multipart/form-data',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json, text.html'
           },
           body: JSON.stringify(formState)
         };
