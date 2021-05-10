@@ -11,7 +11,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 
 function Copyright() {
     return (
-      <Typography variant="body2" color="textSeconday" >
+      <Typography variant="body2" style={{color:'white'}}>
         {'Copyright © '}
         <Link to="/" style={{color:'white', textDecoration:'none'}}>
           Bite Events!
@@ -29,12 +29,19 @@ const useStyles = makeStyles((theme) => ({
       minHeight: '100vh',
     },
     main: {
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(2),
+      margin:'0',
+      padding: '0',
     },
     footer: {
       marginTop: 'auto',
       },
+    footerContent:{
+      placeItems: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     }));
 
 const Footer = ()=>{
@@ -42,20 +49,36 @@ const Footer = ()=>{
     return(
         <div>
       <CssBaseline />
-      <footer>
+      <footer className={classes.main}>
         <Box>
         <Grid container justify="space-around">
-            <Grid item xs={12} sm={4} md={4}>
+            <Grid item xs={12} sm={4} md={4} justify="center" className={classes.footerContent}>
             <Link to='/'>
-            <img src={Logofooter} alt="Bite Events"/>
+            <img src={Logofooter} alt="Bite Events" width="100px"/>
             </Link>
+            <Typography align="left" style={{color:'white'}}>
+              Bite your event!<br/>
+              Munsterdam Str. 102<br/>
+              Berlin, Germany
+            </Typography>
             </Grid>
-            <Grid item xs={12} sm={4} md={4}>
-                
+            <Grid item xs={12} sm={4} md={4} className={classes.footerContent}>
+                <Link style={{textDecoration:'none', color: 'white'}}>
+                    <Typography>About</Typography>
+                </Link>
+                <Link style={{textDecoration:'none', color: 'white'}}>
+                    <Typography>Vision</Typography>
+                </Link>
+                <Link style={{textDecoration:'none', color: 'white'}}>
+                    <Typography>Plan your event</Typography>
+                </Link>
+                <Link style={{textDecoration:'none', color: 'white'}}>
+                    <Typography>Some inspiration</Typography>
+                </Link>
             </Grid>
-            <Grid item xs={12} sm={4} md={4}>
-                <Typography>Follow us!</Typography>
-                <Link href="" target="_blank">
+            <Grid item xs={12} sm={4} md={4} className={classes.footerContent}>
+                <Typography style={{color:'white', fontWeight:'500'}}>Follow us!</Typography>
+                <Link href="https://www.instagram.com/bite.your.events/" target="_blank" style={{color:'white'}}>
                     <InstagramIcon/>               
                 </Link>
 
