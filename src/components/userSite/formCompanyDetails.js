@@ -36,19 +36,27 @@ const CompanyDetails = () => {
     const onChange = e =>{
        setFormState({...formState, [e.target.name]: e.target.value})
       };
+    const onChangeFile = e =>{
+        setFormState({...formState, profile_img: e.target.files[0]})
+       };
     const onSubmit = async e => {
         e.preventDefault();
         for (const field in formState){
           if (!formState[field]) return alert(`Fill up your ${field}`);
         }
+        const formData = new FormData();
+        formData.append('profile_img',profile_img);
+        formData.append('company_name',company_name);
+        formData.append('address',address);
+        formData.append('category',category);
+        formData.append('phone',phone);
+
         const options={
           method:'POST',
           headers:{
-            'token': localStorage.getItem('token'),
-            'Accept': 'multipart/form-data',
-            'Content-Type': 'application/json'
+            'token': localStorage.getItem('token')
           },
-          body: JSON.stringify(formState)
+          body: formData
         };
         
         const res = await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/newuserprofile`, options)
@@ -70,7 +78,7 @@ const CompanyDetails = () => {
               name="profile_img" 
               accept="image/*" 
               multiple={false} 
-              onChange={onChange} 
+              onChange={onChangeFile} 
               />
 
                 <TextField

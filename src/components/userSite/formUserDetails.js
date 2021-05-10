@@ -33,6 +33,9 @@ const NormalUserDetails = () => {
     const onChange = e =>{
        setFormState({...formState, [e.target.name]: e.target.value})
       };
+      const onChangeFile = e =>{
+        setFormState({...formState, profile_img: e.target.files[0]})
+       };
     const onSubmit = async e => {
         e.preventDefault();
         for (const field in formState){
@@ -70,7 +73,7 @@ const NormalUserDetails = () => {
               name="profile_img" 
               accept="image/*" 
               multiple={false} 
-              onChange={onChange} 
+              onChange={onChangeFile} 
               />
                 <TextField
                   required
