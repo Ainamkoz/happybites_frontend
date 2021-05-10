@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react';
-import {AuthContext} from './context/authContext';
+import {AuthContext} from '../auth/context/authContext'
 import { makeStyles} from "@material-ui/core/styles";
 import {Container, Typography, Grid, TextField, Button} from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -55,7 +55,6 @@ const CompanyDetails = () => {
         const {newCompany} = await res.json()
         setUserProfile(prev => ({...prev, result: newCompany}))
     };
-    if(setUserProfile)
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />

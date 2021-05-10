@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import ShareInsBtn from '../userSite/shareIns';
 import CardShareIns from '../userSite/cardProIns';
 import TextField from '@material-ui/core/TextField';
-import CompanyDetails from '../userSite/companyDetails';
+import CompanyDetails from '../userSite/formCompanyDetails';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -63,7 +63,7 @@ const CompanyInfo = () => {
     setValue(newValue);
   };
 
-  return !userProfile.result.length ? (<CompanyDetails/>): (
+  return !userProfile.result.length ? <CompanyDetails/>: (
     <>
     <div className={classes.root}>
       <AppBar position="static">
