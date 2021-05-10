@@ -18,6 +18,8 @@ import Notfound from './components/notFound';
 import "typeface-heebo";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { deepOrange, grey} from '@material-ui/core/colors';
+import Typography from '@material-ui/core/Typography';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -34,6 +36,7 @@ const theme = createMuiTheme({
           'sans-serif',
         ].join(','),
       },
+      
 });
 
 
