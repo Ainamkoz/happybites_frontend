@@ -4,7 +4,7 @@ html, body{
     font-family: 'Heebo', sans-serif;
 }
 
-img.imglogo{
+img.imglogo {
     width: 15rem;
 }
 .MuiAppBar-colorPrimary {
@@ -12,13 +12,15 @@ img.imglogo{
 }
 div.home{
     display: flex;
-
     width: 100%;
 }
+
 div.MuiButtonGroup-root.MuiButtonGroup-disableElevation.MuiButtonGroup-contained{
-    display: flex;
-    float:left;
+  display: flex;
+  float:left;
 }
+
+
 div.banner-home{
     display: flex;
     flex-direction: column;
@@ -177,3 +179,12 @@ p {
     font-weight: 400;
     margin:4px 0 20px;
 }
+
+
+#root > div:nth-child(2) > div:nth-child(2) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
