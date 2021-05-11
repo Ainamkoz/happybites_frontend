@@ -10,19 +10,21 @@ import {
   Button,
   CssBaseline,
 } from "@material-ui/core";
+import React from 'react';
 import { useState, useContext, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Link from '@material-ui/core/Link';
+import Link from "@material-ui/core/Link";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
 import { AuthContext } from "./auth/context/authContext";
 import { useParams } from "react-router-dom";
 import SingleMap from "./map/mapSingle";
+import EventPageForm from './formspage/eventPageForm';
 
-const useStyles = makeStyles( (theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
@@ -38,16 +40,16 @@ const useStyles = makeStyles( (theme) => ({
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '50%', // Fix IE 11 issue.
+    width: "50%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -55,9 +57,8 @@ const useStyles = makeStyles( (theme) => ({
   },
 }));
 
-const CompanyBook = () => {
+export default function CompanyBook() {
   const classes = useStyles();
-  const theme = useTheme();
   const {
     error,
     setBasicError,
@@ -66,8 +67,8 @@ const CompanyBook = () => {
     myRestau,
     setMyRestau,
   } = useContext(AuthContext);
-  const { id } = useParams();
   const [singleRest, setSingleRest] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
@@ -82,98 +83,24 @@ const CompanyBook = () => {
     setLoading(false);
   }, [id]);
 
-  useEffect(() => {
+ useEffect(() => {
     if (myRestau) {
       const currentRest = myRestau.find(
         singleRest => singleRest.service_id == id
       );
       setSingleRest(currentRest);
     }
-  }, [myRestau, id]);
+  }, [myRestau, id]); 
 
   if (loading) return <div>Loading ... </div>;
 
   if (error)
     return <div>There was an error when retrieving the data: {error}</div>;
 
-  return myRestau ? (
+  return  myRestau ?  (
     <>
       <Container>
-            <form className={classes.form} >
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="email"
-                name="email"
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Your email"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="phone"
-                label="Phone"
-                name="phone"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="guest"
-                label="Guest Count"
-                name="guest"
-                autoComplete="guest"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                helperText=""
-                autoComplete="current-password"
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="eventDate"
-                label="EventDate"
-                type="eventDate"
-                id="eventDate"
-              />
-            </Grid>
-      
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Book
-          </Button>
-        </form>
-
-          <Grid item xs="12" sm="6">
+         <Grid item xs="12" sm="6">
             <Card className={classes.root}>
               <CardMedia
                 component="img"
@@ -200,13 +127,12 @@ const CompanyBook = () => {
                 </div>
               </div>
             </Card>
-          </Grid>
-          <SingleMap/>
+          </Grid> 
+          <EventPageForm myRestau={myRestau} />
       </Container>
     </>
-  ) : (
+  )   : (
     <div> Loading ... </div>
-  );
-};
-
-export default CompanyBook;
+  )
+} 
+ 

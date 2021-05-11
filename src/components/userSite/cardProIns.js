@@ -1,4 +1,8 @@
+import {useEffect, useState, useContext} from 'react'
+import {AuthContext} from '../auth/context/authContext';
+
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -29,23 +33,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CardShareIns() {
+export default function CardShareIns({ideasFromCompany, setIdeasFromCompany}) {
   const classes = useStyles();
+  const{userProfile} = useContext(AuthContext);
+ 
 
+  useEffect(()=>{
+    const getIdeas = async () => {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND}/ideas`)
+      const data = await res.json()
+      const ideasByCompany = data.filter(idea => idea.company_id === userProfile.result[0].company_id)
+      setIdeasFromCompany(ideasByCompany)
+    }
+
+    getIdeas()
+  },[])
   
 
-  return (
-    <Card className={classes.root}>
+  return ideasFromCompany ? (
+    <Grid container>
+        {
+          ideasFromCompany.map(idea => (
+
+            <Grid item xs={4}>
+              <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image="https://i.ytimg.com/vi/ClFLXkGhuI8/maxresdefault.jpg"
-        title="Fish dish"
+        image={`${process.env.REACT_APP_BACKEND}/uploads/${idea.images}`}
+        title={idea.title}
       />
       <CardContent>
-        <Typography variant="h6">Best Fish in Berlin</Typography>
+        <Typography variant="h6">{idea.title}</Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive fish is a perfect party dish and a fun meal to eat together with your
-          guests. Add 1 cup of white wine, if you like.
+          {idea.description}
         </Typography>
       </CardContent>
       <CardActions>
@@ -60,5 +80,11 @@ export default function CardShareIns() {
         </IconButton>
       </CardActions>
     </Card>
-  );
+            </Grid>
+          ))
+        }
+      </Grid>
+
+
+  ): '...loading'
 }
