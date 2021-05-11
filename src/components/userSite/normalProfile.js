@@ -8,7 +8,6 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import ShareInsBtn from '../userSite/shareIns';
-import CardShareIns from '../userSite/cardProIns';
 import TextField from '@material-ui/core/TextField';
 import NormalUserDetails from './formUserDetails';
 import CollapsibleTable from './messages';
@@ -66,7 +65,7 @@ const NormalProfile = () => {
   };
   const name = userProfile.result[0]
 
-  return !userProfile.result.length ? (<NormalUserDetails/>) : (
+  return !userProfile.result.length ? (<div>hey</div>) : (
     <>
     <div className={classes.root}>
       <AppBar position="static">
@@ -85,8 +84,6 @@ const NormalProfile = () => {
     <div className="profilePmenu">
           <Typography> <CollapsibleTable/> </Typography>
         </div>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
       </TabPanel>
     </div>
     </>

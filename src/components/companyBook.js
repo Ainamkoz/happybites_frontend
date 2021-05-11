@@ -10,6 +10,7 @@ import {
   Button,
   CssBaseline,
 } from "@material-ui/core";
+import React from 'react';
 import { useState, useContext, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -21,6 +22,7 @@ import Rating from "@material-ui/lab/Rating";
 import { AuthContext } from "./auth/context/authContext";
 import { useParams } from "react-router-dom";
 import SingleMap from "./map/mapSingle";
+import EventPageForm from './formspage/eventPageForm';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,13 +57,18 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CompanyBook = () => {
+export default function CompanyBook() {
   const classes = useStyles();
-  const theme = useTheme();
-  const { error, setBasicError, loading, setLoading, myRestau, setMyRestau } =
-    useContext(AuthContext);
-  const { id } = useParams();
+  const {
+    error,
+    setBasicError,
+    loading,
+    setLoading,
+    myRestau,
+    setMyRestau,
+  } = useContext(AuthContext);
   const [singleRest, setSingleRest] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
@@ -76,147 +83,56 @@ const CompanyBook = () => {
     setLoading(false);
   }, [id]);
 
-  useEffect(() => {
+ useEffect(() => {
     if (myRestau) {
       const currentRest = myRestau.find(
         singleRest => singleRest.service_id == id
       );
       setSingleRest(currentRest);
     }
-  }, [myRestau, id]);
+  }, [myRestau, id]); 
 
   if (loading) return <div>Loading ... </div>;
 
   if (error)
     return <div>There was an error when retrieving the data: {error}</div>;
 
-  return myRestau ? (
+  return  myRestau ?  (
     <>
       <Container>
-        <form className={classes.form}>
-          <Typography variant="h5" align="center">
-            Send Message
-          </Typography>
-          <br />
-          <br />
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="email"
-                name="email"
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Your email"
-                autoFocus
+         <Grid item xs="12" sm="6">
+            <Card className={classes.root}>
+              <CardMedia
+                component="img"
+                alt="Codo restaurant"
+                className={classes.cover}
+                image={singleRest && singleRest.images} // {singleRest && `http://localhost:5000/uploads/${singleRest.images}`} replace later with db
+                title="Codo restaurant"
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="phone"
-                label="Phone"
-                name="phone"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="guest"
-                label="Guest Count"
-                name="guest"
-                autoComplete="guest"
-              />
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="price"
-                label="Price per Guest"
-                type="price"
-                id="price"
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="eventDate"
-                label="Preffered Date"
-                type="eventDate"
-                id="eventDate"
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                multiline
-                name="message"
-                label="Message"
-                type="message"
-                id="message"
-                rows={4}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}>
-            Send
-          </Button>
-        </form>
-
-        <Grid item xs="12" sm="6">
-          <Card className={classes.root}>
-            <CardMedia
-              component="img"
-              alt="Codo restaurant"
-              className={classes.cover}
-              image={singleRest && singleRest.images} // {singleRest && `http://localhost:5000/uploads/${singleRest.images}`} replace later with db
-              title="Codo restaurant"
-            />
-            <div className={classes.details}>
-              <CardContent className={classes.content}>
-                <Typography component="h5" variant="h5">
-                  {singleRest && singleRest.service_name}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  {singleRest && singleRest.description}
-                </Typography>
-              </CardContent>
-              <div>
-                <Rating
-                  name="half-rating"
-                  defaultValue={singleRest && singleRest.rating}
-                  precision={0.5}
-                />
+              <div className={classes.details}>
+                <CardContent className={classes.content}>
+                  <Typography component="h5" variant="h5">
+                    {singleRest && singleRest.service_name}
+                  </Typography>
+                  <Typography variant="subtitle1" color="textSecondary">
+                    {singleRest && singleRest.description}
+                  </Typography>
+                </CardContent>
+                <div>
+                  <Rating
+                    name="half-rating"
+                    defaultValue={singleRest && singleRest.rating}
+                    precision={0.5}
+                  />
+                </div>
               </div>
-            </div>
-          </Card>
-        </Grid>
-        <SingleMap />
+            </Card>
+          </Grid> 
+          <EventPageForm myRestau={myRestau} />
       </Container>
     </>
-  ) : (
+  )   : (
     <div> Loading ... </div>
-  );
-};
-
-export default CompanyBook;
+  )
+} 
+ 

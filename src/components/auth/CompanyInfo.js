@@ -1,18 +1,20 @@
-import React, { useContext } from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import { AuthContext } from "./context/authContext";
-import AppBar from "@material-ui/core/AppBar";
+import React , {useState, useContext}from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import {AuthContext} from './context/authContext';
+import AppBar from '@material-ui/core/AppBar';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 import ShareInsBtn from "../userSite/shareIns";
 import CardShareIns from "../userSite/cardProIns";
 import TextField from "@material-ui/core/TextField";
 import CompanyDetails from "../userSite/formCompanyDetails";
 import CompanyProfileDetails from "../userSite/companyDetails";
 import Messages from "../userSite/messages";
+import ServiceForm from "../userSite/serviceForm";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,7 +56,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const CompanyInfo = () => {
-  const { isAuthenticated, userProfile } = useContext(AuthContext);
+  const [ideasFromCompany, setIdeasFromCompany ] = useState([])
+  const [serviceFromCompany, setServiceFromCompany] = useState([])
+  
+  const {isAuthenticated, userProfile} = useContext(AuthContext);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -68,58 +73,45 @@ const CompanyInfo = () => {
     <CompanyDetails />
   ) : (
     <>
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Typography variant="h6" align="right" className="pName">
+    <div className={classes.root}>
+      <AppBar position="static">
+      <Typography variant="h6" align="right" className="pName">
             {" "}
             Hi {name.company_name}!
           </Typography>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="Profile Menu"
-            centered>
-            <Tab label="Company Details" {...a11yProps(0)} />
-            <Tab label="Messages" {...a11yProps(1)} />
-            <Tab label="Share Idea" {...a11yProps(2)} />
-          </Tabs>
-        </AppBar>
-        <TabPanel height="100vh" value={value} index={0}>
-          <div className="profilePmenu">
-            <Typography>
+        <Tabs value={value} onChange={handleChange} aria-label="Profile Menu" centered>
+          <Tab label="Company Details" {...a11yProps(0)} />
+          <Tab label="Messages" {...a11yProps(1)} />
+          <Tab label="Share Idea" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel height="100vh" value={value} index={0}>
+        <Grid className="profilePmenu">
+          <Typography>
               <CompanyProfileDetails />
             </Typography>
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <div className="profilePmenu">
+        </Grid>
+        <Grid>          
+          <ServiceForm setServiceFromCompany={setServiceFromCompany}/>
+          </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+      <div className="profilePmenu">
             <Typography>
               <Messages />
             </Typography>
           </div>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <div
-            className="profilePmenu"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}>
-            <Typography variant="h5" align="center">
-              You can share some of your products, meals, photography, ...
-              Anything that it can help the community to know more about your
-              businness
-            </Typography>
-            <div>
-              <ShareInsBtn />
-            </div>
-            <div>
-              <Typography variant="h5" align="center">
-                Current Ideas Posted
-              </Typography>
-              <CardShareIns />
-            </div>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+      <div className="profilePmenu" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+          <Typography variant="h5" align="center">You can share some of your products, meals, photography, ... Anything that it can help the community to know more about your businness</Typography>         
+          <div>
+            <ShareInsBtn setIdeasFromCompany={setIdeasFromCompany}/>
+          </div>
+          <div>
+            <Typography variant="h5" align="center">Current Ideas Posted</Typography>
+            <CardShareIns ideasFromCompany={ideasFromCompany} setIdeasFromCompany={setIdeasFromCompany}/>
+          </div>
           </div>
         </TabPanel>
       </div>

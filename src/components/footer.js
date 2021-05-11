@@ -53,11 +53,9 @@ const Footer = ()=>{
         <Box>
         <Grid container justify="space-around">
             <Grid item xs={12} sm={4} md={4} justify="center" className={classes.footerContent}>
-            <Link to='/'>
-            <img src={Logofooter} alt="Bite Events" width="100px"/>
-            </Link>
+            
             <Typography align="left" style={{color:'white'}}>
-              Bite your event!<br/>
+             <b>Bite your event!</b><br/>
               Munsterdam Str. 102<br/>
               Berlin, Germany
             </Typography>
@@ -77,7 +75,10 @@ const Footer = ()=>{
                 </Link>
             </Grid>
             <Grid item xs={12} sm={4} md={4} className={classes.footerContent}>
-                <Typography style={{color:'white', fontWeight:'500'}}>Follow us!</Typography>
+            <Link to='/'>
+            <img src={Logofooter} alt="Bite Events" width="60px" marginTop="1rem"/>
+            </Link>
+                <Typography style={{color:'white', fontWeight:'200', marginBottom:'0.5rem'}}>Follow us!</Typography>
                 <Link href="https://www.instagram.com/bite.your.events/" target="_blank" style={{color:'white'}}>
                     <InstagramIcon/>               
                 </Link>

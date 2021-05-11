@@ -59,13 +59,12 @@ const AuthState = ({ children }) => {
       const res = await fetch(`${process.env.REACT_APP_BACKEND}/me`, options);
       const { success } = await res.json();
       if (success) {
-        const resUserReq = await fetch(
-          `${process.env.REACT_APP_BACKEND}/requests/getuserrequest`,
+        const resUserProfile = await fetch(
+          `${process.env.REACT_APP_BACKEND}/userprofile/getcurrentuser`,
           { headers: { token: token } }
         );
-        const requests = await resUserReq.json();
-        console.log("userRequests", requests);
-        setRequests(requests);
+        const userProfile = await resUserProfile.json();
+        setUserProfile(userProfile);
         setIsAuthenticated(true);
       } else {
         localStorage.removeItem("token");
@@ -74,23 +73,6 @@ const AuthState = ({ children }) => {
     };
     verifySession();
   }, []);
-
-/* useEffect(() => {
-    setLoading(true);
-    fetch("http://localhost:5000/requests/getuserrequest")
-      .then(res => res.json())
-      .then(data => {
-        setRequests(() => data);
-        setSelectedRequest(() => data);
-      })
-      .catch(err => {
-        console.log(`All Users requests: ${err}`);
-        setError(() => err);
-      });
-    setLoading(false);
-  }, []);
- */
- 
   
   const signUp = async options => {
     try {

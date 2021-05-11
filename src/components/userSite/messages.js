@@ -28,6 +28,7 @@ const useRowStyles = makeStyles({
 
 function Row(props) {
   const [open, setOpen] = React.useState(false);
+  const [messages, setMessages] = useState()
   const classes = useRowStyles();
   const {
     requests,
@@ -37,20 +38,28 @@ function Row(props) {
     loading,
     setBasicError,
     setLoading,
+    userProfile
   } = useContext(AuthContext);
 
 
-const messages = requests.result
-  console.log(messages) 
+useEffect(()=>{
+  const getMessages = async ()=>{
 
-/*   const messages = requests.result.findIndex((element, index) => {
-    if (element.requests = 0 ) {
-      return true
+    if(userProfile.company){
+      const res = await fetch(`${process.env.REACT_APP_BACKEND}/requests`)
+      const data = await res.json()
+      const messagesForCompany = data.filter(msg => msg.company_id === userProfile.result[0].company_id)
+      console.log(data)
+      setMessages(messagesForCompany)
+    } else{
+      const res = await fetch(`${process.env.REACT_APP_BACKEND}/requests/${userProfile.result[0].profileUser_id}`)
+    const data = await res.json()
+    setMessages(data)
     }
-  })
-
-  console.log("hello", messages) */
-
+    
+  }
+  getMessages()
+},[])
 
   return (
     <React.Fragment>
@@ -63,12 +72,6 @@ const messages = requests.result
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          Restaurant | Food service
-        </TableCell>
-        <TableCell align="right"> company_email</TableCell>
-        <TableCell align="right"> requested date </TableCell>
-        <TableCell align="right"> </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -87,7 +90,7 @@ const messages = requests.result
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                {messages.map((msg, index) => (               
+                {messages && messages.map((msg, index) => (               
                    <TableRow>
                       <TableCell component="th" scope="row">
                         {msg.event_date}
@@ -96,7 +99,7 @@ const messages = requests.result
                       <TableCell align="right"> {msg.guest_number} </TableCell>
                       <TableCell align="right"> {msg.message}</TableCell>
                     </TableRow>
-                    ))};
+                    ))}
                 </TableBody>
               </Table>
             </Box>
@@ -131,13 +134,12 @@ export default function CollapsibleTable() {
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell>Service Type</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Date Event</TableCell>
-            <TableCell align="right">Status</TableCell>
-          </TableRow>
+        <TableRow>
+                    <TableCell>Event Date</TableCell>
+                    <TableCell>email</TableCell>
+                    <TableCell align="right">Guest number</TableCell>
+                    <TableCell align="right">Message</TableCell>
+                  </TableRow>
         </TableHead>
         <TableBody>
             <Row/>

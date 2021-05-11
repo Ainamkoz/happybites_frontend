@@ -9,7 +9,6 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import InstagramIcon from "@material-ui/icons/Instagram";
-import CardProIns from "./cardProIns";
 
 
 const useStyles = makeStyles(theme => ({
@@ -61,9 +60,6 @@ const UserDetails = () => {
             {users.map((user, index) => (
               <Grid
                 item
-                xs={12}
-                sm={4}
-                md={4}
                 justify="center"
                 className={classes.footerContent}>
                 <Typography align="left" style={{ color: "black" }}>
@@ -79,11 +75,6 @@ const UserDetails = () => {
                 </Typography>
               </Grid>
             ))}
-
-            <Grid item xs={12} sm={4} md={4} className={classes.profileContent}>
-            <Typography variant="h5" align="center">Your Favorite Posts</Typography>         
-              <CardProIns />
-            </Grid>
           </Grid>
         </Box>
       </div>

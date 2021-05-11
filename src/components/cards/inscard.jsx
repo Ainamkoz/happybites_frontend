@@ -23,17 +23,13 @@ const Inscards = () => {
     console.log(selectedIdea);
 
   const showIdeas = selectedIdea.map(item => {
-    return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container spacing={1}>
-            {cards.map(card => 
-              <Grid item key={card} xs={12} spacing={3} md={4}>
+    return cards.map(card => 
+            <Grid container>
+ <Grid item key={card} xs={12} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image={item.images}
+                    image={`${process.env.REACT_APP_BACKEND}/uploads/${item.images}`}
                     component="img"
                     title="Image Title"
                   />
@@ -54,11 +50,10 @@ const Inscards = () => {
                   </CardActions>
                 </Card>
               </Grid>
-            )}
-          </Grid>
-        </Container>
-      </div>
-    );
+
+            </Grid>
+             
+            )
   });
   if (loading) return <div> Loading... </div>;
   return <>{showIdeas}</>;

@@ -59,9 +59,6 @@ const CompanyDetails = () => {
             {users.map((user, index) => (
               <Grid
                 item
-                xs={12}
-                sm={4}
-                md={4}
                 justify="center"
                 className={classes.footerContent}>
                 <Typography align="left" style={{ color: "black" }}>
@@ -78,10 +75,10 @@ const CompanyDetails = () => {
               </Grid>
             ))}
 
-            <Grid item xs={12} sm={4} md={4} className={classes.companyProfileContent}>
+         {/*    <Grid item xs={12} sm={4} md={4} className={classes.companyProfileContent}>
             <Typography variant="h5" align="center"> Share your services </Typography>
             <CompanyServicesForm/>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
       </div>
