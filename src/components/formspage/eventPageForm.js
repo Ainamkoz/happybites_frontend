@@ -81,7 +81,7 @@ import {
           formData.append('message',message);
           formData.append('price',price);
           formData.append('company_id',myRestau.company_id);
-          formData.append('profileUser_id', userProfile ? userProfile.result[0].profileUser_id : null );
+          formData.append('profileUser_id', !userProfile.company ? userProfile.result[0].profileUser_id : userProfile.result[0].company_id );
           console.log(formData)
 
           const resNewEvent =  await fetch(`${process.env.REACT_APP_BACKEND}/requests/requestevent`, {method: 'POST', body: formData, headers: {token: localStorage.getItem('token')}});
