@@ -73,19 +73,17 @@ import {
       for (const field in newEvent){
         if (!newEvent[field]) return alert(`Fill up your ${field}`);
       }
-      const formData = new FormData();
-          formData.append('email',email);
-          formData.append('phone',phone);
-          formData.append('guest_number',guest_number);
-          formData.append('event_date',event_date);
-          formData.append('message',message);
-          formData.append('price',price);
-          formData.append('company_id',myRestau.company_id);
-          formData.append('profileUser_id', !userProfile.company ? userProfile.result[0].profileUser_id : userProfile.result[0].company_id );
-          console.log(formData)
 
-          const resNewEvent =  await fetch(`${process.env.REACT_APP_BACKEND}/requests/requestevent`, {method: 'POST', body: formData, headers: {token: localStorage.getItem('token')}});
+      const options = {
+        method: 'POST', 
+        body: JSON.stringify({...newEvent, company_id: myRestau[0].company_id, profileUser_id: !userProfile.company ? userProfile.result[0].profileUser_id : userProfile.result[0].company_id}), 
+        
+        headers: {token: localStorage.getItem('token'), 'Content-Type': 'application/json'}
+      }
+
+          const resNewEvent =  await fetch(`${process.env.REACT_APP_BACKEND}/requests/requestevent`, options);
           const NewEvent = await resNewEvent.json() 
+          console.log(NewEvent)
           setNewEvent({
             email:'',
             phone:'',
@@ -94,7 +92,9 @@ import {
             message:'',
             price:''
         })
-        }
+    }
+
+
       if(!userProfile.result.length) return <div>Create your user profile to send requests to providers ;)
         <Link to='/user-profile'>Go now</Link>
       </div>
@@ -202,6 +202,3 @@ import {
       </div>
     )   
   } 
-   
-  
-  

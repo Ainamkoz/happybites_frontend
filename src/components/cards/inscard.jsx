@@ -8,47 +8,28 @@ import {
   CardMedia,
   CssBaseline,
   Grid,
-  GridListTile,
-  GridList,
   Container,
 } from "@material-ui/core";
-import { makeStyles} from "@material-ui/core/styles";
+import useStyles from "../assets/styles";
 import { AuthContext } from "../auth/context/authContext";
-
-const useStyles = makeStyles ((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-}));
 
 const cards = [1];
 
 const Inscards = () => {
   const classes = useStyles();
-  const { allIdeas, selectedIdea, setSelectedIdea, loading } = useContext(
+    const { allIdeas, selectedIdea, setSelectedIdea, loading } = useContext(
     AuthContext
   );
-  console.log(selectedIdea);
+    console.log(selectedIdea);
 
   const showIdeas = selectedIdea.map(item => {
-    return (
-      <div>
-        <CssBaseline />
-          <div className={classes.root}>
-          <GridList cellHeight={180} className={classes.gridList}>
-            {cards.map(card => 
-              <GridListTile key={card} >
+    return cards.map(card => 
+            <Grid container>
+ <Grid item key={card} xs={12} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image={item.images}
+                    image={`${process.env.REACT_APP_BACKEND}/uploads/${item.images}`}
                     component="img"
                     title="Image Title"
                   />
@@ -68,12 +49,11 @@ const Inscards = () => {
                     </Button>
                   </CardActions>
                 </Card>
-              </GridListTile>
-            )}
-          </GridList>
-          </div>
-      </div>
-    );
+              </Grid>
+
+            </Grid>
+             
+            )
   });
   if (loading) return <div> Loading... </div>;
   return <>{showIdeas}</>;

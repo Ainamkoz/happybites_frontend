@@ -15,7 +15,7 @@ import { useState, useContext, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Link from '@material-ui/core/Link';
+import Link from "@material-ui/core/Link";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
@@ -24,7 +24,7 @@ import { useParams } from "react-router-dom";
 import SingleMap from "./map/mapSingle";
 import EventPageForm from './formspage/eventPageForm';
 
-const useStyles = makeStyles( (theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
@@ -40,16 +40,16 @@ const useStyles = makeStyles( (theme) => ({
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '50%', // Fix IE 11 issue.
+    width: "50%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
