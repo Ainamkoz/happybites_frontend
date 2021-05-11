@@ -14,7 +14,7 @@ import { useState, useContext, useEffect } from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Link from '@material-ui/core/Link';
+import Link from "@material-ui/core/Link";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Rating from "@material-ui/lab/Rating";
@@ -22,7 +22,7 @@ import { AuthContext } from "./auth/context/authContext";
 import { useParams } from "react-router-dom";
 import SingleMap from "./map/mapSingle";
 
-const useStyles = makeStyles( (theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
@@ -38,16 +38,16 @@ const useStyles = makeStyles( (theme) => ({
   },
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '50%', // Fix IE 11 issue.
+    width: "50%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -58,14 +58,8 @@ const useStyles = makeStyles( (theme) => ({
 const CompanyBook = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const {
-    error,
-    setBasicError,
-    loading,
-    setLoading,
-    myRestau,
-    setMyRestau,
-  } = useContext(AuthContext);
+  const { error, setBasicError, loading, setLoading, myRestau, setMyRestau } =
+    useContext(AuthContext);
   const { id } = useParams();
   const [singleRest, setSingleRest] = useState("");
 
@@ -99,7 +93,12 @@ const CompanyBook = () => {
   return myRestau ? (
     <>
       <Container>
-            <form className={classes.form} >
+        <form className={classes.form}>
+          <Typography variant="h5" align="center">
+            Send Message
+          </Typography>
+          <br />
+          <br />
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -124,7 +123,7 @@ const CompanyBook = () => {
                 autoComplete="lname"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
@@ -135,17 +134,16 @@ const CompanyBook = () => {
                 autoComplete="guest"
               />
             </Grid>
-            <Grid item xs={12}>
+
+            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                helperText=""
-                autoComplete="current-password"
+                name="price"
+                label="Price per Guest"
+                type="price"
+                id="price"
               />
             </Grid>
 
@@ -155,52 +153,64 @@ const CompanyBook = () => {
                 required
                 fullWidth
                 name="eventDate"
-                label="EventDate"
+                label="Preffered Date"
                 type="eventDate"
                 id="eventDate"
               />
             </Grid>
-      
+
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                multiline
+                name="message"
+                label="Message"
+                type="message"
+                id="message"
+                rows={4}
+              />
+            </Grid>
           </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
-          >
-            Book
+            className={classes.submit}>
+            Send
           </Button>
         </form>
 
-          <Grid item xs="12" sm="6">
-            <Card className={classes.root}>
-              <CardMedia
-                component="img"
-                alt="Codo restaurant"
-                className={classes.cover}
-                image={singleRest && singleRest.images} // {singleRest && `http://localhost:5000/uploads/${singleRest.images}`} replace later with db
-                title="Codo restaurant"
-              />
-              <div className={classes.details}>
-                <CardContent className={classes.content}>
-                  <Typography component="h5" variant="h5">
-                    {singleRest && singleRest.service_name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {singleRest && singleRest.description}
-                  </Typography>
-                </CardContent>
-                <div>
-                  <Rating
-                    name="half-rating"
-                    defaultValue={singleRest && singleRest.rating}
-                    precision={0.5}
-                  />
-                </div>
+        <Grid item xs="12" sm="6">
+          <Card className={classes.root}>
+            <CardMedia
+              component="img"
+              alt="Codo restaurant"
+              className={classes.cover}
+              image={singleRest && singleRest.images} // {singleRest && `http://localhost:5000/uploads/${singleRest.images}`} replace later with db
+              title="Codo restaurant"
+            />
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <Typography component="h5" variant="h5">
+                  {singleRest && singleRest.service_name}
+                </Typography>
+                <Typography variant="subtitle1" color="textSecondary">
+                  {singleRest && singleRest.description}
+                </Typography>
+              </CardContent>
+              <div>
+                <Rating
+                  name="half-rating"
+                  defaultValue={singleRest && singleRest.rating}
+                  precision={0.5}
+                />
               </div>
-            </Card>
-          </Grid>
+            </div>
+          </Card>
+        </Grid>
       </Container>
     </>
   ) : (

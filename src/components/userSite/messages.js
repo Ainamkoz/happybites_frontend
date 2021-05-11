@@ -1,60 +1,74 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { useState, useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import { AuthContext } from "../auth/context/authContext";
 
 const useRowStyles = makeStyles({
   root: {
-    '& > *': {
-      borderBottom: 'unset',
+    "& > *": {
+      borderBottom: "unset",
     },
   },
 });
 
-function createData(service_name, email, date_event, status) {
-  return {
-    service_name,
-    email,
-    date_event,
-    status,
-    history: [
-      { date: '2020-01-05', customerId: '11091700', amount: 3 },
-      { date: '2020-01-02', customerId: 'Anonymous', amount: 1 },
-    ],
-  };
-}
-
 function Row(props) {
-  const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
+  const {
+    requests,
+    setRequests,
+    selectedRequest,
+    setSelectedRequest,
+    loading,
+    setBasicError,
+    setLoading,
+  } = useContext(AuthContext);
+
+
+const messages = requests.result
+  console.log(messages) 
+
+/*   const messages = requests.result.findIndex((element, index) => {
+    if (element.requests = 0 ) {
+      return true
+    }
+  })
+
+  console.log("hello", messages) */
+
 
   return (
     <React.Fragment>
       <TableRow className={classes.root}>
         <TableCell>
-          <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.service_name}
+          Restaurant | Food service
         </TableCell>
-        <TableCell align="right">{row.email}</TableCell>
-        <TableCell align="right">{row.date_event}</TableCell>
-        <TableCell align="right">{row.status}</TableCell>
+        <TableCell align="right"> company_email</TableCell>
+        <TableCell align="right"> requested date </TableCell>
+        <TableCell align="right"> </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -66,25 +80,23 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
+                    <TableCell>Event Date</TableCell>
+                    <TableCell>email</TableCell>
+                    <TableCell align="right">Guest number</TableCell>
+                    <TableCell align="right">Message</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
+                {messages.map((msg, index) => (               
+                   <TableRow>
                       <TableCell component="th" scope="row">
-                        {historyRow.date}
+                        {msg.event_date}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
+                      <TableCell>{msg.email} </TableCell>
+                      <TableCell align="right"> {msg.guest_number} </TableCell>
+                      <TableCell align="right"> {msg.message}</TableCell>
                     </TableRow>
-                  ))}
+                    ))};
                 </TableBody>
               </Table>
             </Box>
@@ -105,7 +117,7 @@ Row.propTypes = {
         amount: PropTypes.number.isRequired,
         customerId: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
-      }),
+      })
     ).isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -113,14 +125,8 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 3.99),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 4.99),
-  createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
-  createData('Cupcake', 305, 3.7, 67, 4.3, 2.5)
-];
-
 export default function CollapsibleTable() {
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -134,9 +140,8 @@ export default function CollapsibleTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))}
+            <Row/>
+          
         </TableBody>
       </Table>
     </TableContainer>

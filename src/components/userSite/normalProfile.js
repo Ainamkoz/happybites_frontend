@@ -11,6 +11,8 @@ import ShareInsBtn from '../userSite/shareIns';
 import CardShareIns from '../userSite/cardProIns';
 import TextField from '@material-ui/core/TextField';
 import NormalUserDetails from './formUserDetails';
+import CollapsibleTable from './messages';
+import UserDetails from './userDetails';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -62,37 +64,29 @@ const NormalProfile = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const name = userProfile.result[0]
 
   return !userProfile.result.length ? (<NormalUserDetails/>) : (
     <>
     <div className={classes.root}>
       <AppBar position="static">
-        <Typography variant="h6" align="right" className="pName">Hi Jorge!</Typography>
+        <Typography variant="h6" align="right" className="pName">Hi {name.username}!</Typography>
         <Tabs value={value} onChange={handleChange} aria-label="Profile Menu" centered>
           <Tab label="Profile" {...a11yProps(0)} />
           <Tab label="Events Requested" {...a11yProps(1)} />
-          <Tab label="Favorites" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel height="100vh" value={value} index={0}>
         <div className="profilePmenu">
-          <Typography>Item One</Typography>
+          <Typography> <UserDetails/> </Typography>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
     <div className="profilePmenu">
-          <Typography>Item Two</Typography>
+          <Typography> <CollapsibleTable/> </Typography>
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <div className="profilePmenu" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
-          <Typography variant="h5" align="center">Your Favorite Posts</Typography>         
-          
-          <div>
-            <Typography variant="h5" align="center">Current Ideas Posted</Typography>
-            <CardShareIns/>
-          </div>
-        </div>
       </TabPanel>
     </div>
     </>

@@ -1,5 +1,5 @@
 import {useState, useContext} from 'react';
-import {AuthContext} from './context/authContext';
+import {AuthContext} from '../auth/context/authContext'
 import { makeStyles} from "@material-ui/core/styles";
 import {Container, Typography, Grid, TextField, Button} from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -36,26 +36,33 @@ const CompanyDetails = () => {
     const onChange = e =>{
        setFormState({...formState, [e.target.name]: e.target.value})
       };
+    const onChangeFile = e =>{
+        setFormState({...formState, profile_img: e.target.files[0]})
+       };
     const onSubmit = async e => {
         e.preventDefault();
         for (const field in formState){
           if (!formState[field]) return alert(`Fill up your ${field}`);
         }
+        const formData = new FormData();
+        formData.append('profile_img',profile_img);
+        formData.append('company_name',company_name);
+        formData.append('address',address);
+        formData.append('category',category);
+        formData.append('phone',phone);
+
         const options={
           method:'POST',
           headers:{
-            'token': localStorage.getItem('token'),
-            'Accept': 'multipart/form-data',
-            'Content-Type': 'application/json'
+            'token': localStorage.getItem('token')
           },
-          body: JSON.stringify(formState)
+          body: formData
         };
         
         const res = await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/newuserprofile`, options)
         const {newCompany} = await res.json()
         setUserProfile(prev => ({...prev, result: newCompany}))
     };
-    if(setUserProfile)
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -71,7 +78,7 @@ const CompanyDetails = () => {
               name="profile_img" 
               accept="image/*" 
               multiple={false} 
-              onChange={onChange} 
+              onChange={onChangeFile} 
               />
 
                 <TextField

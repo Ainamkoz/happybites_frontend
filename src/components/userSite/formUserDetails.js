@@ -33,19 +33,24 @@ const NormalUserDetails = () => {
     const onChange = e =>{
        setFormState({...formState, [e.target.name]: e.target.value})
       };
+      const onChangeFile = e =>{
+        setFormState({...formState, profile_img: e.target.files[0]})
+       };
     const onSubmit = async e => {
         e.preventDefault();
         for (const field in formState){
           if (!formState[field]) return alert(`Fill up your ${field}`);
         }
+        const form = new FormData();
+          form.append('profile_img', profile_img);
+          form.append('username', username);
+          form.append('phone', phone);
         const options={
           method:'POST',
           headers:{
             'token': localStorage.getItem('token'),
-            'Accept': 'multipart/form-data',
-            'Content-Type': 'application/json, text.html'
           },
-          body: JSON.stringify(formState)
+          body: form
         };
 
         const res = await fetch(`${process.env.REACT_APP_BACKEND}/userprofile/newuserprofile`, options)
@@ -60,7 +65,7 @@ const NormalUserDetails = () => {
           <Typography component="h1" variant="h5">
             Fill out your profile details
           </Typography>
-          <form action="/uploads" enctype="multipart/form-data" className={classes.form} onSubmit={onSubmit} >
+          <form  className={classes.form} onSubmit={onSubmit} >
             <Grid container spacing={2}>
               <Grid item xs={12}>
               <input 
@@ -68,7 +73,7 @@ const NormalUserDetails = () => {
               name="profile_img" 
               accept="image/*" 
               multiple={false} 
-              onChange={onChange} 
+              onChange={onChangeFile} 
               />
                 <TextField
                   required
