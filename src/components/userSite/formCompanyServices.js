@@ -61,28 +61,90 @@ const CompanyServices = () => {
         <div className={classes.paper}>
           <form className={classes.form} onSubmit={onSubmit} >
             <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  name="company_name"
-                  label="Company's Name"
+                  name="restaurant_name"
+                  label="Restaurant Name"
                   type="Standard"
                   id="standard-basic"
                   onChange={onChange}
                 />
               </Grid>
-              <Grid item xs={12}>
+              <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
                   name="address"
-                  label="Fiscal Address"
+                  label="Restaurant Address"
                   type="Standard"
                   id="standard-basic"
                   onChange={onChange}
                 />
               </Grid>
+
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  name="price"
+                  label="Price range per Guest"
+                  type="Standard"
+                  id="standard-basic"
+                  onChange={onChange}
+                />
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  name="capacity"
+                  label="Restaurant Capacity"
+                  type="Standard"
+                  id="standard-basic"
+                  onChange={onChange}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="Cuisine"
+                  label="Cuisine Type"
+                  type="Standard"
+                  id="standard-basic"
+                  onChange={onChange}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  multiline
+                  rows={5}
+                  name="description"
+                  label="Small Description"
+                  type="Standard"
+                  id="standard-basic"
+                  onChange={onChange}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+              <input 
+              type="file" 
+              name="event_img" 
+              accept="image/*" 
+              multiple={false} 
+              onChange={onChange} 
+              />
+              </Grid> 
+
             </Grid>
             <Button
               type="submit"

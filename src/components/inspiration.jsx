@@ -9,7 +9,7 @@ const Inspiration = () => {
         Choose what kind of food you like and let yourself be carried away by
         the ideas of our Biters
       </Typography>
-      <InsCard/>
+      <InsCard/>   
     </Container>    
     );
   };

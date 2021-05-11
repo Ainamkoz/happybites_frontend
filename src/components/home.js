@@ -38,7 +38,7 @@ const Home  = ()=>{
 
         </div>
         <div className="banner-home">
-            <Typography variant="h2" align="center" style={{color:'#2c2c3d', fontWeight:'500'}} gutterBottom> Don't think twice and be a <i style={{color:'white'}}>Biter!</i> </Typography>
+            <Typography variant="h2" align="center" style={{color:'#2c2c3d', fontWeight:'500'}} gutterBottom> Don't think twice and join a <i style={{color:'white'}}>Biter!</i> </Typography>
             <Link to='/sign-up' style={{textDecoration:'none'}}><Button variant="outlined" style={{color:'#2c2c3d', fontSize:'1.5rem'}}>Join us</Button></Link>
         </div>
         <Container>
