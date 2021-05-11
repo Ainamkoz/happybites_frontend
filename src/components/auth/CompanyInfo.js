@@ -1,4 +1,4 @@
-import React , {useContext}from 'react';
+import React , {useState, useContext}from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {AuthContext} from './context/authContext';
@@ -11,6 +11,7 @@ import ShareInsBtn from '../userSite/shareIns';
 import CardShareIns from '../userSite/cardProIns';
 import TextField from '@material-ui/core/TextField';
 import CompanyDetails from '../userSite/formCompanyDetails';
+import ServiceForm from '../userSite/serviceForm';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -54,6 +55,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CompanyInfo = () => {
+  const [ideasFromCompany, setIdeasFromCompany] = useState([])
+  const [serviceFromCompany, setServiceFromCompany] = useState([])
   
   const {isAuthenticated, userProfile} = useContext(AuthContext);
   const classes = useStyles();
@@ -77,6 +80,7 @@ const CompanyInfo = () => {
       <TabPanel height="100vh" value={value} index={0}>
         <div className="profilePmenu">
           <Typography>Item One</Typography>
+          <ServiceForm setServiceFromCompany={setServiceFromCompany}/>
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -88,11 +92,11 @@ const CompanyInfo = () => {
       <div className="profilePmenu" style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
           <Typography variant="h5" align="center">You can share some of your products, meals, photography, ... Anything that it can help the community to know more about your businness</Typography>         
           <div>
-            <ShareInsBtn/>
+            <ShareInsBtn setIdeasFromCompany={setIdeasFromCompany}/>
           </div>
           <div>
             <Typography variant="h5" align="center">Current Ideas Posted</Typography>
-            <CardShareIns/>
+            <CardShareIns ideasFromCompany={ideasFromCompany} setIdeasFromCompany={setIdeasFromCompany}/>
           </div>
         </div>
       </TabPanel>

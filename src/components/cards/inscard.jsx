@@ -8,10 +8,25 @@ import {
   CardMedia,
   CssBaseline,
   Grid,
+  GridListTile,
+  GridList,
   Container,
 } from "@material-ui/core";
-import useStyles from "../assets/styles";
+import { makeStyles} from "@material-ui/core/styles";
 import { AuthContext } from "../auth/context/authContext";
+
+const useStyles = makeStyles ((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+  },
+}));
 
 const cards = [1];
 
@@ -26,10 +41,10 @@ const Inscards = () => {
     return (
       <div>
         <CssBaseline />
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container spacing={4}>
+          <div className={classes.root}>
+          <GridList cellHeight={180} className={classes.gridList}>
             {cards.map(card => 
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <GridListTile key={card} >
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -53,10 +68,10 @@ const Inscards = () => {
                     </Button>
                   </CardActions>
                 </Card>
-              </Grid>
+              </GridListTile>
             )}
-          </Grid>
-        </Container>
+          </GridList>
+          </div>
       </div>
     );
   });

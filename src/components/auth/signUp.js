@@ -20,18 +20,6 @@ import {AuthContext} from './context/authContext';
 import { Redirect } from 'react-router-dom';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://happybites-events.com/">
-        Happy Bites Events
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -178,9 +166,7 @@ export default function Signup() {
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-        <Copyright />
-        </Box>
+      
     </Container>
   );
 }

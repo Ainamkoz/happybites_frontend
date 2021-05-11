@@ -49,8 +49,8 @@ function App() {
       <Route exact path='/about' component={About}/>
       <Route exact path='/vision' component={Allcompanies}/>
       <Route exact path='/vision/:id' component={Company}/>
-      <Route exact path='/plan-your-event' component={Eventplan}/>
-      <Route exact path='/plan-your-event/:id' component={CompanyBook}/>
+      <ProtectedRoute exact path='/plan-your-event' component={Eventplan}/>
+      <ProtectedRoute exact path='/plan-your-event/:id' component={CompanyBook}/>
       <Route exact path='/inspiration' component={Inspiration}/>
       <Route exact path='/sign-in' component={Signin} />
       <Route exact path='/sign-up' component={Signup} />
