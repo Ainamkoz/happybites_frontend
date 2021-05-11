@@ -211,6 +211,7 @@ const CompanyBook = () => {
             </div>
           </Card>
         </Grid>
+        <SingleMap />
       </Container>
     </>
   ) : (
