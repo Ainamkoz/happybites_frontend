@@ -44,64 +44,6 @@ const Inscards  = () => {
     const { allIdeas, selectedIdea, setSelectedIdea, loading } = useContext(
     AuthContext
   );
-<<<<<<< HEAD
-
-  const showIdeas = selectedIdea.map(item => {
-    return (
-      <div className={classes.root}>
-        <GridList cols={1} cellHeight={400} className={classes.gridList}>
-            <GridListTile key={item.images}>
-              <img src={`http://localhost:5000/uploads/${item.images}`} alt={item.title} />
-              <GridListTileBar
-                title={item.title}
-                subtitle={<span>By: {item.company}</span>}
-                actionIcon={
-                  <IconButton aria-label={`info about ${item.description}`} className={classes.icon}>
-                    <InfoIcon />
-                  </IconButton>
-                }
-              />
-            </GridListTile>
-        </GridList>
-      </div>      
-  )
-})  
-  if (loading) return (
-  <div> Loading... </div>
-  )
-    return(
-      <div>
-      {showIdeas}
-      </div>
-    )
-          
-  }
- 
-export default Inscards ;
-
-/* <div className={classes.root}>
-        <GridList cellHeight={180} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-          </GridListTile>
-        
-<GridListTile key={item.images}>
-              <img src={`${process.env.REACT_APP_BACKEND}/uploads/${item.images}`} alt={item.title} />
-              
-          
-              <GridListTileBar
-                title={item.title}
-                subtitle={<span>By: {item.company}</span>}
-                actionIcon={
-                  <IconButton aria-label={`info about ${item.description}`} className={classes.icon}>
-                    <InfoIcon />
-                  </IconButton>}
-              />
- </GridListTile>
-          
-      </GridList>
-      
-      </div>  */
-=======
     console.log(selectedIdea);
 
   const showIdeas = selectedIdea.map(item => {
@@ -142,4 +84,3 @@ export default Inscards ;
 };
 
 export default Inscards;
->>>>>>> main
