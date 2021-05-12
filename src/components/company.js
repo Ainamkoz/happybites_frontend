@@ -3,6 +3,7 @@ import Image from './assets/img/back-vision.svg';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,9 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textIntro: {
     color:'#2c2c3d',
-    fontSize: '2.3rem',
-    paddingRight: '10rem',
-    paddingLeft: '12rem',
+    fontSize: '2rem',
     marginBottom:'5rem',
     fontWeight: '400',
   },
@@ -46,13 +45,13 @@ const Company = ({ value }) => {
   return (
     <>
       <CssBaseline />
-      <Grid container>
-      <Typography variant="h3" style={{marginBottom:"3rem", fontWeight:"800"}}>Everything you need, all in one place</Typography>
+      <Container>
+      <Typography variant="h3" align="center" style={{marginBottom:"3rem", fontWeight:"800"}}>Everything you need, all in one place</Typography>
       <Typography variant="h2" align="center" className={classes.textIntro} gutterBottom>We are very happy to help you in the process of planning your events.
         We know that it is very important to have certain guarantees when you are preparing an event, that's why we are here! 
         We guarantee that your event will be perfect!</Typography>
       
-      </Grid>
+      </Container>
     <Grid container >
       <Box className={classes.paperContainer}>
       <Typography variant="h4" className={classes.titleVision}>Get Inspiration From <br/> our Collection of Photos </Typography>

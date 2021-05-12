@@ -69,7 +69,7 @@ const NormalProfile = () => {
     <>
     <div className={classes.root}>
       <AppBar position="static">
-        <Typography variant="h6" align="right" className="pName">Hi {name.username}!</Typography>
+        <Typography variant="h6" align="right" className="pName">Hi,<b style={{color:"#e57373"}}> {name.username}</b>!</Typography>
         <Tabs value={value} onChange={handleChange} aria-label="Profile Menu" centered>
           <Tab label="Profile" {...a11yProps(0)} />
           <Tab label="Events Requested" {...a11yProps(1)} />
@@ -81,7 +81,8 @@ const NormalProfile = () => {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
-    <div className="profilePmenu">
+    <div className="profilePmenu" style={{marginTop:"2rem", marginBottom:"5rem"}}>
+         <Typography variant="body1" align="center" style={{color: "#2c2c3d", fontSize: "1.8rem", fontWeight:"500", marginBottom:"3rem"}}>Check out all your request</Typography>
           <Typography> <CollapsibleTable/> </Typography>
         </div>
       </TabPanel>
