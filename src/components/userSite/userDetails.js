@@ -34,6 +34,9 @@ const useStyles = makeStyles(theme => ({
     width: theme.spacing(15),
     height: theme.spacing(15),
   },
+  avatar:{
+    backgroundColor: "#e57373",
+  },
 }));
 
 const UserDetails = () => {
@@ -55,8 +58,8 @@ const UserDetails = () => {
     <div>
       <CssBaseline />
       <div className={classes.main}>
-        <Box>
-          <Grid container justify="center">
+        <Box style={{display:"flex", marginTop:"2rem", marginBottom:"5rem"}}>
+          <Grid container justify="center" xs="12" sm="3">
             {users.map((user, index) => (
               <Grid
                 item
@@ -68,13 +71,16 @@ const UserDetails = () => {
                     src={`http://localhost:5000/uploads/${user.profile_pic}`}
                     className={classes.large}
                   />
-                  <br></br>
-                  Username: {user.username}
-                  <br></br>
-                  Phone: {user.phone}
+                  <br/><br/>
+                  <b>Username:</b> {user.username}
+                  <br/><br/>
+                  <b>Phone:</b> {user.phone}
                 </Typography>
               </Grid>
             ))}
+          </Grid>
+          <Grid container xs="12" sm="6">
+              <Typography variant="body1" style={{color: "#2c2c3d", fontSize: "1.8rem", fontWeight:"500"}}>This are your favorite ideas :)</Typography>
           </Grid>
         </Box>
       </div>

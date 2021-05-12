@@ -17,7 +17,7 @@ const Eventplan = () => {
   const classes= useStyles();
   return (
     <Container style={{padding:'0'}}>
-     <Typography variant="h3" align="center" className={classes.titleVision}>Find your perfect company & Plan your perfect event</Typography>
+     <Typography variant="h3" align="center" style={{marginBottom:"3rem", fontWeight:"800"}} className={classes.titleVision}>Find your perfect company & Plan your perfect event</Typography>
       <Grid container spacing="2">
         <Grid item xs="12" sm="3">
           <MapComponent />

@@ -20,7 +20,7 @@ const Home  = ()=>{
     return(
         <>
         <div className="home">
-            <Grid container display="flex" spacing="1" direction="row" justify="space-around"alignItems="center">
+            <Grid container display="flex" spacing="1" direction="row" justify="space-around"alignItems="center" style={{marginTop:"3rem"}}>
                 <Grid item xs={12} md={6}>
                 <Typography variant="h1" align="center" className={classes.titleHome} gutterBottom>Enjoy looking for some inspiration and planning your events!</Typography>
                 <div className="home-btn">
