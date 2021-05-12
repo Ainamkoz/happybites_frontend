@@ -96,7 +96,7 @@ const CompanyInfo = () => {
           <Typography variant="body1" style={{color: "#2c2c3d", fontSize: "1.8rem", fontWeight:"500", marginBottom:"1rem"}}>Upload all your different company locations</Typography>      
           <ServiceForm setServiceFromCompany={setServiceFromCompany}/>
           </Grid>
-       </Box>
+       </Box> 
       </TabPanel>
       <TabPanel value={value} index={1}>
       <div className="profilePmenu">
