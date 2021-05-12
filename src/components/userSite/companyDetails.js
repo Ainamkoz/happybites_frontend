@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import CompanyServicesForm from '../userSite/formCompanyServices'
+import ServiceForm from '../userSite/serviceForm';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,13 +68,12 @@ const CompanyDetails = () => {
                     className={classes.large}
                   />
                   <br></br>
-                  Company name: {user.company_name}
+                  <b>Company name:</b> {user.company_name}
                   <br></br>
-                  Address: {user.address}
+                  <b>Address:</b> {user.address}
                 </Typography>
               </Grid>
             ))}
-
          {/*    <Grid item xs={12} sm={4} md={4} className={classes.companyProfileContent}>
             <Typography variant="h5" align="center"> Share your services </Typography>
             <CompanyServicesForm/>
