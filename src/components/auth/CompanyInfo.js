@@ -77,7 +77,7 @@ const CompanyInfo = () => {
       <AppBar position="static">
       <Typography variant="h6" align="right" className="pName">
             {" "}
-            Hi {name.company_name}!
+            Hi <b style={{color:"#e57373"}}>{name.company_name}</b>!
           </Typography>
         <Tabs value={value} onChange={handleChange} aria-label="Profile Menu" centered>
           <Tab label="Company Details" {...a11yProps(0)} />
@@ -86,14 +86,17 @@ const CompanyInfo = () => {
         </Tabs>
       </AppBar>
       <TabPanel height="100vh" value={value} index={0}>
-        <Grid className="profilePmenu">
+       <Box style={{display:'flex', marginTop:"2rem", marginBottom:"5rem"}}>
+       <Grid container justify="center" xs="12" sm="3" className="profilePmenu"style={{flexDirection:"column", alignItems:"center"}}>
           <Typography>
               <CompanyProfileDetails />
             </Typography>
         </Grid>
-        <Grid>          
+        <Grid container justify="center" xs="12" sm="9" style={{flexDirection:"column", alignItems:"center"}}>  
+          <Typography variant="body1" style={{color: "#2c2c3d", fontSize: "1.8rem", fontWeight:"500", marginBottom:"1rem"}}>Upload all your different company locations</Typography>      
           <ServiceForm setServiceFromCompany={setServiceFromCompany}/>
           </Grid>
+       </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
       <div className="profilePmenu">
